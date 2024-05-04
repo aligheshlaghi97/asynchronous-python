@@ -15,9 +15,7 @@ This repository serves as a comprehensive resource for learning about asynchrono
 
 1. * **Introduction to Asynchronous Programming**
      - What is asynchronous programming?
-     - Thread vs process
-     - GIL
-     - Concurrency vs parallelism
+     - Thread vs process, Concurrency vs parallelism, GIL
      - Event loops, coroutines, non-blocking I/O
 
 2. * **Getting Started with asyncio**
