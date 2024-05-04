@@ -13,16 +13,51 @@ This repository serves as a comprehensive resource for learning about asynchrono
 **Community Engagement:** Join a growing community of developers interested in async Python, contribute your own examples, and collaborate with others to explore async programming further.<br />
 ## Table of Contents:
 
-1. Introduction to Asynchronous Programming <br />
-2. Getting Started with asyncio <br />
-3. Concurrency and Parallelism <br />
-4. Handling Asynchronous I/O <br />
-5. Synchronization and Coordination <br />
-6. Advanced Techniques <br />
-7. Performance Optimization <br />
-8. Exploring Python 3.12 Features <br />
-9. Real-World Applications <br />
-10. Community and Resources <br />
+1. * **Introduction to Asynchronous Programming**
+     - What is asynchronous programming?
+     - Thread vs Process
+     - GIL
+     - Concurrency vs Parallelism
+     - Key concepts: event loops, coroutines, non-blocking I/O, etc.
+
+2. * **Getting Started with asyncio**
+     - Overview of the asyncio module in Python
+     - Basic syntax and usage of coroutines and event loops
+     - Writing your first async Python program
+     - Basic syntax of asyncio
+
+3. * **Handling CPU and I/O Bound Tasks**
+     - CPU-bound vs I/O-bound
+     - Performing asynchronous I/O operations with asyncio
+     - Best practices for efficient I/O handling in async Python
+     - Techniques for optimizing run speed by handling CPU and I/O-bound tasks
+     - Strategies for balancing CPU and I/O-bound workloads in async Python applications
+
+4. * **Synchronization and Coordination**
+     - Managing shared resources and avoiding race conditions
+     - Synchronization primitives: locks, semaphores, and barriers
+     - Coordinating asynchronous tasks with asyncio's synchronization tools
+
+5. * **Advanced Techniques**
+     - Error handling and exception propagation in async Python
+     - Chaining coroutines and composing complex async workflows
+       
+6. * **Exploring Python 3.12 Features**
+     - Overview of new features and enhancements in Python 3.12
+     - Highlighting async-related improvements and additions
+     - Practical examples demonstrating the use of Python 3.12 features in async programming
+
+7.  * **Real-World Applications**
+      - ASGI vs. WSGI: Understanding the differences and benefits
+      - Building REST APIs with async Python: Principles and best practices
+      - Introduction to Starlette framework for async web applications
+      - Exploring practical examples of async Python in real-world scenarios
+
+8. * **Community and Resources**
+      - Engaging with the async Python community
+      - Recommended resources for further learning and exploration
+      - Encouraging contributions and collaboration on async Python projects
+
 ## How to Get Started:
 
 Explore the directories and examples in the repository to learn about different async Python concepts. <br />
