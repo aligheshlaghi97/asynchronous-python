@@ -15,10 +15,10 @@ This repository serves as a comprehensive resource for learning about asynchrono
 
 1. * **Introduction to Asynchronous Programming**
      - What is asynchronous programming?
-     - Thread vs Process
+     - Thread vs process
      - GIL
-     - Concurrency vs Parallelism
-     - Key concepts: event loops, coroutines, non-blocking I/O, etc.
+     - Concurrency vs parallelism
+     - Event loops, coroutines, non-blocking I/O
 
 2. * **Getting Started with asyncio**
      - Overview of the asyncio module in Python
