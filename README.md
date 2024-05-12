@@ -21,9 +21,8 @@ This repository serves as a comprehensive resource for learning about asynchrono
 2. * **Getting Started with asyncio**
      - Overview of the asyncio module in Python
      - Runners
-     - Basic syntax and usage of coroutines and event loops
-     - Writing your first async Python program
-     - Basic syntax of asyncio
+     - Awaiting coroutines, creating tasks and using event loop
+     - Other important APIs of asyncio
 
 3. * **Handling CPU and I/O Bound Tasks**
      - CPU-bound vs I/O-bound
