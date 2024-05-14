@@ -62,6 +62,7 @@ async def main():
 asyncio.run(main())
 ```
 <br>
+
 Now let's create some tasks and await it. We'll see it works just fine.
 
 ```python3
@@ -91,6 +92,7 @@ async def main():
 asyncio.run(main())
 ```
 <br>
+
 `asyncio.get_running_loop` will return the running event loop of OS thread.
 
 
@@ -108,3 +110,31 @@ asyncio.run(main())
 
 
 ## Other important APIs of asyncio
+We can use `asyncio.TaskGroup` (using context manager) to run tasks concurrently, 
+[in example below](https://docs.python.org/3/library/asyncio-task.html#task-groups): 
+```python3
+# ex_2_7
+async def main():
+    print('Before running task group!')
+    async with asyncio.TaskGroup() as tg:
+        task1 = tg.create_task(sleep_coro(2))
+        task2 = tg.create_task(sleep_coro(3))
+    print('After running task group!')
+    print(f"task1: {task1.result()}, task2: {task2.result()}")
+```
+<br>
+
+We can use `asyncio.wait_for` function to run a coroutine and wait until a timeout.
+In this example, the coroutine takes 2 seconds to run completely, but a timeout error will be raised after 1st second.
+```python3
+# ex_2_8
+async def main():
+    try:
+        await asyncio.wait_for(sleep_coro(2), timeout=1.0)
+    except TimeoutError:
+        print('timeout!')
+```
+<br>
+
+This covers the basics of asyncio syntax. 
+In the next section, we'll use the APIs we learned here to manage I/O and CPU-bound tasks
