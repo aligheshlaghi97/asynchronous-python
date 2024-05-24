@@ -50,9 +50,10 @@ async def main():
 
 ```
 
-The time it takes in example 3_1 and 3_2 are very close, meaning that example 3_2 is running the requests concurrently.
+The times recorded in examples 3_1 and 3_2 are very close,
+indicating that example 3_2 is running the requests concurrently.
 
-We can also gather all the tasks using `asyncio.gather` doing literaly the same thing as ex_2_2:
+We can also gather all the tasks using `asyncio.gather`, doing literally the same thing as in example 3_2.
 ```python3
 # ex_3_3
 async def main():
@@ -61,10 +62,14 @@ async def main():
         tasks = [client.get(url) for _ in range(3)]
         obj = await asyncio.gather(*tasks)
 ```
-In this example, `task` list comprehension utilized and then unpacking the list into gather function.
-list comprehension is creating a list at once without appending or extending it.
 
-Now let's look at an example in which httpx's sync APIs are used, which takes roughly 3 time more than previous examples.
+In this example, a list comprehension is utilized to create the `task` list,
+which is then unpacked into the `gather` function.
+The list comprehension creates the list all at once without appending or extending it.
+
+Now, let's look at an example using httpx's synchronous APIs,
+which takes roughly three times longer than the previous examples.
+
 ```python3
 # ex_3_4
 url = 'https://www.example.org/'
@@ -72,3 +77,51 @@ response1 = httpx.get(url)
 response2 = httpx.get(url)
 response3 = httpx.get(url)
 ```
+
+## Performing asynchronous CPU operations
+
+In Python, the multiprocessing library is used to parallelize CPU-bound tasks. 
+We achieve this by utilizing just two of our CPU's cores in the following example.
+First, we define a CPU-bound task that simply adds a value to the `_sum` variable. 
+To utilize the multiprocessing library, we use partial functions, 
+which are the same functions with some variables pre-set. 
+Running the code in the next example, we see the speed double.
+```python3
+# ex_3_5
+def cpu_bound_task(a: int, n: int) -> float:
+    _sum = 0
+    for number in range(n):
+        _sum += a
+    return _sum
+
+t = time.time()
+value = cpu_bound_task(2, 100000000)
+print(f'value: {value}')
+value = cpu_bound_task(2, 100000000)
+print(f'It took without multiprocessing {time.time() - t} s')
+print(f'value: {value}')
+
+cpu_bound_partial = partial(cpu_bound_task, 2)
+
+with Pool(2) as p:
+    t = time.time()
+    value = p.map(cpu_bound_partial, [100000000, 100000000])
+    print(f'It took with multiprocessing {time.time() - t} s')
+    print(f'value: {value}')
+```
+
+##Strategies for balancing CPU and I/O-bound workloads in async Python applications
+This is a good article talking about this subject:
+[How to Boost Your App Performance with Asyncio](https://blog.cellenza.com/en/software-development/how-to-boost-your-apps-performance-with-asyncio-a-practical-guide-for-python-developers/)
+
+In summary, when dealing with CPU-bound tasks, it's generally advisable to utilize multiprocessing, 
+with some exceptions we'll discuss later. 
+For I/O-bound tasks, the choice typically lies between asyncio and the multithreading modules.
+While we didn't cover the multithreading module in this section for simplicity, 
+it's worth noting that it can also be used for I/O-bound tasks. 
+If feasible, asyncio is often preferred over threading. 
+We conclude this section by referencing a table from an article,
+which effectively delineates the nuanced distinctions between threading and asyncio.
+
+![img.png](img.png)
+
