@@ -51,3 +51,24 @@ async def main():
 ```
 
 The time it takes in example 3_1 and 3_2 are very close, meaning that example 3_2 is running the requests concurrently.
+
+We can also gather all the tasks using `asyncio.gather` doing literaly the same thing as ex_2_2:
+```python3
+# ex_3_3
+async def main():
+    url = 'https://www.example.com/'
+    async with httpx.AsyncClient() as client:
+        tasks = [client.get(url) for _ in range(3)]
+        obj = await asyncio.gather(*tasks)
+```
+In this example, `task` list comprehension utilized and then unpacking the list into gather function.
+list comprehension is creating a list at once without appending or extending it.
+
+Now let's look at an example in which httpx's sync APIs are used, which takes roughly 3 time more than previous examples.
+```python3
+# ex_3_4
+url = 'https://www.example.org/'
+response1 = httpx.get(url)
+response2 = httpx.get(url)
+response3 = httpx.get(url)
+```

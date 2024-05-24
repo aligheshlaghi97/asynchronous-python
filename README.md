@@ -26,8 +26,8 @@ This repository serves as a comprehensive resource for learning about asynchrono
 
 3. * **Handling CPU and I/O Bound Tasks**
      - CPU-bound vs I/O-bound
-     - Performing asynchronous I/O operations with asyncio
-     - Best practices for efficient I/O handling in async Python
+     - Performing asynchronous I/O operations with asyncio and httpx
+     - Performing asynchronous CPU operations with asyncio and httpx
      - Techniques for optimizing run speed by handling CPU and I/O-bound tasks
      - Strategies for balancing CPU and I/O-bound workloads in async Python applications
 
