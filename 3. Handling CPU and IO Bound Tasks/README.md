@@ -123,5 +123,5 @@ If feasible, asyncio is often preferred over threading.
 We conclude this section by referencing a table from an article,
 which effectively delineates the nuanced distinctions between threading and asyncio.
 
-![img.png](img.png)
+[//]: # (![img.png]&#40;img.png&#41;)
 
