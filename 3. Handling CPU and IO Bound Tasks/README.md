@@ -123,5 +123,5 @@ If feasible, asyncio is often preferred over threading.
 We conclude this section by referencing a table from an article,
 which effectively delineates the nuanced distinctions between threading and asyncio.
 
-[//]: # (![img.png]&#40;img.png&#41;)
 
+![Screenshot from 2024-05-24 19-39-15](https://github.com/aligheshlaghi97/asynchronous-python/assets/121802083/935a265a-aa5f-4e35-b311-d9d810e9f5c1)
