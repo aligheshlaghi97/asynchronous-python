@@ -36,7 +36,7 @@ In above example, variable `value` must be `10000` but it's `1` in the end.
 This race condition happens due to suspending the `task` coroutine using `asyncio.sleep` for 0.01s.
 
 ## Synchronization primitives: locks, semaphores, and barriers
-
+### Locks
 To solve the problem above, we can use `asyncio.Lock`.
 [An asyncio lock can be used to guarantee exclusive access to a shared resource.](https://docs.python.org/3/library/asyncio-sync.html#asyncio.Lock)
 
@@ -54,3 +54,54 @@ async def main():
 ```
 As provided in ex_4_2, a lock created inside `main` and passed to `task` coroutine. 
 For fast response, 0.01s delay decreased to 0.
+
+### Semaphores
+To limit access to some resources, semaphores are used. 
+I'll bring the example from [this article](https://medium.com/@kalmlake/async-io-in-python-sync-primitives-19524a10b9da)
+(with some minor changes) to illustrate how a semaphore works.
+```python3
+# ex_4_3
+async def limited_resource(sem):
+    async with sem:
+        print("Accessing limited resource")
+        await asyncio.sleep(1)
+        print("Finished using limited resource")
+
+async def main():
+    sem = asyncio.Semaphore(2)
+    tasks = [limited_resource(sem) for _ in range(4)]
+    await asyncio.gather(*tasks)
+```
+Running above example, we want to access a limited resouce for 4 time. 
+We see that only two acquisitions of limited resource happens at first. 
+Then it will sleep for 1s and after releasing the resources the remaining two acquisitions happen.
+
+### Barriers
+[As official documents says:](https://docs.python.org/3/library/asyncio-sync.html#asyncio.Barrier) 
+A barrier is a simple synchronization primitive that allows to block until parties number of tasks are waiting on it.
+Tasks can wait on the `wait()` method and would be blocked until the specified number of tasks end up waiting on `wait()`
+
+```python3
+# ex_4_4
+async def example_barrier():
+    b = asyncio.Barrier(3)
+    asyncio.create_task(b.wait())
+    asyncio.create_task(b.wait())
+
+    await asyncio.sleep(0)
+    print(b)
+    await b.wait()
+    print(b)
+    print("barrier passed")
+    await asyncio.sleep(0)
+    print(b)
+```
+Running example above, results in the below response:
+```shell
+<asyncio.locks.Barrier object at 0x... [filling, waiters:2/3]>
+<asyncio.locks.Barrier object at 0x... [draining, waiters:0/3]>
+barrier passed
+<asyncio.locks.Barrier object at 0x... [filling, waiters:0/3]>
+```
+
+## Coordinating asynchronous tasks with asyncio's synchronization tools
