@@ -16,6 +16,7 @@ resulting in the variable a being incorrectly set to `1` instead of the correct 
 Below you can see a similar example (with some minor changes) from Jason Brownlee in 
 [SuperFastPython for asyncio race conditions](https://superfastpython.com/asyncio-race-conditions/):
 ```python3
+# ex_4_1
 async def task():
     global value
     tmp = value
@@ -36,3 +37,20 @@ This race condition happens due to suspending the `task` coroutine using `asynci
 
 ## Synchronization primitives: locks, semaphores, and barriers
 
+To solve the problem above, we can use `asyncio.Lock`.
+[An asyncio lock can be used to guarantee exclusive access to a shared resource.](https://docs.python.org/3/library/asyncio-sync.html#asyncio.Lock)
+
+We can use such a syntax to use locks:
+```python3
+# ex_4_2
+async def task(lock):
+    async with lock:
+        # access shared state
+
+async def main():
+    lock = asyncio.Lock()
+    coroutines = [task(lock) for _ in range(10000)]
+    await asyncio.gather(*coroutines)
+```
+As provided in ex_4_2, a lock created inside `main` and passed to `task` coroutine. 
+For fast response, 0.01s delay decreased to 0.
