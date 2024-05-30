@@ -57,15 +57,15 @@ This repository serves as a comprehensive resource for learning about asynchrono
 
 ## How to Get Started:
 
-Explore the directories and examples in the repository to learn about different async Python concepts. <br />
-Read the documentation accompanying each example to understand the underlying principles and techniques. <br />
-Experiment with the code, modify it, and see how different changes affect the behavior of async programs. <br />
-Engage with the async Python community by sharing your insights, contributing new examples, or providing feedback on existing content. <br />
+1. Explore the directories and examples in the repository to learn about different async Python concepts. <br />
+2. Read the documentation accompanying each example to understand the underlying principles and techniques. <br />
+3. Experiment with the code, modify it, and see how different changes affect the behavior of async programs. <br />
+4. Engage with the async Python community by sharing your insights, contributing new examples, or providing feedback on existing content. <br />
 
 ## How to Contribute:
 
-Fork the repository and create a new branch for your contributions. <br />
-Add your code examples, tutorials, or documentation improvements. <br />
-Ensure your contributions adhere to the repository's coding standards and documentation format. <br />
-Submit a pull request detailing the changes you've made and explaining their purpose. <br />
-I will review your pull request, provide feedback if necessary, and merge it once approved. <br />
+1. Fork the repository and create a new branch for your contributions. <br />
+2. Add your code examples, tutorials, or documentation improvements. <br />
+3. Ensure your contributions adhere to the repository's coding standards and documentation format. <br />
+4. Submit a pull request detailing the changes you've made and explaining their purpose. <br />
+5. I will review your pull request, provide feedback if necessary, and merge it once approved. <br />
