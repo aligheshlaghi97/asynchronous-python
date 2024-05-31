@@ -105,3 +105,24 @@ barrier passed
 ```
 
 ## Coordinating asynchronous tasks with asyncio's synchronization tools
+We can use a combination of the above methods to coordinate asynchronous tasks or 
+leverage more advanced APIs such as `asyncio.Event` or `asyncio.Condition`. 
+An example from the official asyncio documentation can help us understand events.
+
+
+```python3
+# ex_4_5
+async def waiter(event):
+    print('waiting for it ...')
+    await event.wait()
+    print('... got it!')
+
+async def main():
+    event = asyncio.Event()
+    waiter_task = asyncio.create_task(waiter(event))
+    await asyncio.sleep(1)
+    event.set()
+    await waiter_task
+```
+In the example above, the main thread will sleep for 1 second before setting the event. 
+`asyncio.Condition` is similar to an event but includes lock methods.
