@@ -107,7 +107,8 @@ barrier passed
 ## Coordinating asynchronous tasks with asyncio's synchronization tools
 We can use a combination of the above methods to coordinate asynchronous tasks or 
 leverage more advanced APIs such as `asyncio.Event` or `asyncio.Condition`. 
-An example from the official asyncio documentation can help us understand events.
+An example from the [official asyncio documentation](https://docs.python.org/3/library/asyncio-sync.html#asyncio.Event)
+can help us understand events.
 
 
 ```python3
@@ -125,4 +126,8 @@ async def main():
     await waiter_task
 ```
 In the example above, the main thread will sleep for 1 second before setting the event. 
-`asyncio.Condition` is similar to an event but includes lock methods.
+`asyncio.Condition` is similar to an event but includes lock methods. <br>
+
+Also Jason Brownlee says in 
+[his article about asyncio condition](https://superfastpython.com/asyncio-condition-variable/#What_is_an_Asyncio_Condition_Variable):
+In concurrency, a condition allows multiple threads to be notified about some result.
