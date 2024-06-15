@@ -71,3 +71,8 @@ async def main():
     except asyncio.CancelledError:
         print("main(): cancel_me is cancelled now")
 ```
+
+## Chaining coroutines to compose more complex async workflows
+
+
+## asyncio Queue and consumer-producer workflows

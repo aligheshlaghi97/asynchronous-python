@@ -37,7 +37,8 @@ This repository serves as a comprehensive resource for learning about asynchrono
 
 5. * **Advanced Techniques**
      - Error handling and exception propagation in async Python
-     - Chaining coroutines and composing complex async workflows
+     - Chaining coroutines to compose more complex async workflows
+     - asyncio Queue and consumer-producer workflows
 
 6. * **Exploring Python 3.12 Features**
      - Overview of new features and enhancements in Python 3.12
