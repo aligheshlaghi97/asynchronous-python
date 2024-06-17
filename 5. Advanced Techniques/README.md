@@ -72,7 +72,48 @@ async def main():
         print("main(): cancel_me is cancelled now")
 ```
 
-## Chaining coroutines to compose more complex async workflows
+## Chaining coroutines using callback and event to compose more complex async workflows
+As Jason Brownlee says in his article on 
+[Asyncio Coroutine Chaining](https://superfastpython.com/asyncio-coroutine-chaining/#What_is_Coroutine_Chaining),
+coroutine chaining refers to the process of 
+linking or chaining together multiple coroutines to execute in a specific sequence.
+This pattern helps in organizing and managing complex asynchronous workflows.
+Consider that done callback is triggered when the task is done.
+Let's task a look at an example, inspired by 
+[Jason's article](https://superfastpython.com/asyncio-coroutine-chaining/#Example_of_Automatic_Chaining_of_Coroutines_With_Callbacks).
+```python3
+# ex_5_4
+async def task1():
+    print('>task1()')
+    await asyncio.sleep(1)
+    return 1
 
+async def task2(data):
+    print(f'>task2() got {data}')
+    await asyncio.sleep(1)
+
+def callback2(task):
+    global event
+    event.set()
+
+def callback1(task):
+    result = task.result()
+    second_task = asyncio.create_task(task2(result))
+    second_task.add_done_callback(callback2)
+
+async def main():
+    global event
+    event = asyncio.Event()
+    first_task = asyncio.create_task(task1())
+    first_task.add_done_callback(callback1)
+    await event.wait()
+```
+In example above inside main coroutine, we initialize an event, and create task for `task1` and call `add_done_callback`
+with `callback1` coroutine. After `task1` finishes, `callback1` is triggered which gets the result of `task1`
+and creates task for `task2` with `callback2` as its callback when finished. The result of `task1` is passed to `task2`,
+and after `task2` finishes, `callback2` sets the event which lets the `main` coroutine know and finish waiting for that.
+
+Based on that, we can conclude this chain of coroutines to run: <br>
+`main` -> `task1` -> `callback1` -> `task2` -> `callback2` -> continue `main`
 
 ## asyncio Queue and consumer-producer workflows
