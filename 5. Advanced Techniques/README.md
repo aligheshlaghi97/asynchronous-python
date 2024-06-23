@@ -79,7 +79,7 @@ coroutine chaining refers to the process of
 linking or chaining together multiple coroutines to execute in a specific sequence.
 This pattern helps in organizing and managing complex asynchronous workflows.
 Consider that done callback is triggered when the task is done.
-Let's task a look at an example, inspired by 
+Let's take a look at an example, inspired by 
 [Jason's article](https://superfastpython.com/asyncio-coroutine-chaining/#Example_of_Automatic_Chaining_of_Coroutines_With_Callbacks).
 ```python3
 # ex_5_4
@@ -117,3 +117,29 @@ Based on that, we can conclude this chain of coroutines to run: <br>
 `main` -> `task1` -> `callback1` -> `task2` -> `callback2` -> continue `main`
 
 ## asyncio Queue and consumer-producer workflows
+A queue is a first-in, first-out (FIFO) data structure with put and get functionalities. 
+This means that data can be added (put) to the queue and retrieved (gotten) in the order it was added, 
+ensuring that earlier data is accessed first. In Python, the `queue.Queue` class provides this functionality. 
+Additionally, for asynchronous programming within coroutines, Python offers the `asyncio.Queue` API.
+
+Let's take a look at 
+[this example](https://cprieto.com/posts/2021/07/queues-with-python-asyncio.html) from Cristian Prieto:
+```python3
+async def producer(channel: asyncio.Queue):
+    for num in range(0, 5):
+        await asyncio.sleep(1)
+        await channel.put(num)
+
+async def consumer(channel: asyncio.Queue):
+    while True:
+        item = await channel.get()
+        print(f'Got number {item}')
+
+async def main():
+    channel = asyncio.Queue()
+    cons = asyncio.create_task(consumer(channel))
+    await producer(channel)
+    print('Done!')
+```
+As Cristian Prieto says, in this example, `asyncio.Queue` is our way to communicate between the producer of items
+and its consumer, it will await until the queue has an item to give us.
