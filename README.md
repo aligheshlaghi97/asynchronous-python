@@ -43,7 +43,7 @@ This repository serves as a comprehensive resource for learning about asynchrono
 6. * **Exploring Python 3.12 Features**
      - Overview of new features and enhancements in Python 3.12
      - Highlighting async-related improvements and additions
-     - Practical examples demonstrating the use of Python 3.12 features in async programming
+     - Practical examples demonstrating the use of newer Python versions features in async programming
 
 7.  * **Real-World Applications**
       - ASGI vs. WSGI: Understanding the differences and benefits
