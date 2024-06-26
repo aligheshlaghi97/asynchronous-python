@@ -42,7 +42,7 @@ This repository serves as a comprehensive resource for learning about asynchrono
 
 6. * **Exploring Python 3.12 Features**
      - Overview of new features and enhancements in Python 3.12
-     - Highlighting async-related improvements and additions
+     - Highlighting async-related improvements and additions in Python 3.11 and 3.12
      - Practical examples demonstrating the use of newer Python versions features in async programming
 
 7.  * **Real-World Applications**
