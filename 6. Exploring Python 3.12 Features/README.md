@@ -35,10 +35,10 @@ Let's start with eager_task_factory as something quite useful in asyncio world.
 As [this pull request](https://github.com/python/cpython/pull/104140) (and its corresponding issue) demonstrates, 
 using `asyncio.eager_task_factory` can speed up some async-heavy workloads to run up to 4-6 times.
 
-Just take a look at `ex_6_1` in which runs nearly 6 times faster than `ex_6_2`, however the same thing happens in both.
+Just take a look at ex_6_1 in which runs nearly 6 times faster than ex_6_2, however the same thing happens in both.
 The idea is that we create a light coroutine named `light_coro` (in which we just pass and don't do anything) 
-and call it for one million times. We use `eager_task_factory` and `TaskGroup` in first example 
-but use `gather` without `eager_task_factory` in the second one.
+and call it for one million times. We use `eager_task_factory` and `TaskGroup` in first example (ex_6_1)
+but use `gather` without `eager_task_factory` in the second one (ex_6_2).
 ```python
 # ex_6_1
 async def light_coro():
@@ -69,3 +69,18 @@ async def main():
 ```
 So we see that using `eager_task_factory` can be quite useful.
 And the official documentation's recommendation to use `TaskGroup` over `gather` makes sense now.
+
+Now let's talk about the speed-up of `asyncio.current_task` in Python3.12.
+In the following example, we call `asyncio.current_task` one million times. 
+Interestingly, this code runs nearly six times faster with Python 3.12 compared to other versions. Specifically, 
+it takes 0.05 seconds with Python 3.12 versus 0.33 seconds with Python 3.10 in my PC.
+
+```python
+# ex_6_3
+async def main():
+    t1 = time.time()
+    for _ in range(10 ** 6):
+        asyncio.current_task()
+    t2 = time.time()
+    print(f'It took {t2-t1}s')
+```
