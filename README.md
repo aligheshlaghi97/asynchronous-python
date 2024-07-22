@@ -39,6 +39,7 @@ This repository serves as a comprehensive resource for learning about asynchrono
      - Error handling and exception propagation in async Python
      - Chaining coroutines using callback and event to compose more complex async workflows
      - asyncio Queue and consumer-producer workflows
+     - asyncio Future
 
 6. * **Exploring Python 3.12 Features**
      - Overview of new features and enhancements in Python 3.12
