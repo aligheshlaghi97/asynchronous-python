@@ -149,4 +149,24 @@ and its consumer, it will await until the queue has an item to give us.
 ](https://docs.python.org/3/library/asyncio-future.html)
 
 ![](https://blog.cellenza.com/wp-content/uploads/2023/04/Image5.png)
-This image shows the awaitable class inheritance hierarchy
+
+This image shows the awaitable class inheritance hierarchy. As you can see, every task is actually of type future.
+Every `asyncio.Future` has some APIs to call, most important ones are:<br>
+`done()`, `set_result(result)`, `result()`<br>
+Now let's use these APIs inside an example:
+```python
+# ex_5_6
+async def main():
+    future = asyncio.Future()
+    print(f'future status is done: {future.done()}')
+    future.set_result(10)
+    print(f'future status is done: {future.done()}, future result: {future.result()}')
+    result = await future
+    print(f'future result after being awaited: {result}')
+```
+
+In example above, we create a future, check if it's done or not (using `done()`), 
+then set the `result=10` using `set_result(10)`, so the future is done. Moreover, we can await any futures
+and get the result of that future.
+
+Also consider that you can call the same APIs on every `asyncio.Task` too.
