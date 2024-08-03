@@ -118,8 +118,8 @@ Based on that, we can conclude this chain of coroutines to run: <br>
 
 ## asyncio Queue and consumer-producer workflows
 A queue is a first-in, first-out (FIFO) data structure with put and get functionalities. 
-This means that data can be added (put) to the queue and retrieved (gotten) in the order it was added, 
-ensuring that earlier data is accessed first. In Python, the `queue.Queue` class provides this functionality. 
+This means that data can be added (put) to the queue and retrieved (get) in the order it was added, 
+ensuring that earlier data is accessed first. In Python, the `collections.deque` class (syncornized) and `queue.Queue` (parallel) class provide this functionality. 
 Additionally, for asynchronous programming within coroutines, Python offers the `asyncio.Queue` API.
 
 Let's take a look at 
@@ -144,7 +144,7 @@ async def main():
 As Cristian Prieto says, in this example, `asyncio.Queue` is our way to communicate between the producer of items
 and its consumer, it will await until the queue has an item to give us.
 
-## asyncio future
+## asyncio Future
 [Future objects are used to bridge low-level callback-based code with high-level async/await code.
 ](https://docs.python.org/3/library/asyncio-future.html)
 
