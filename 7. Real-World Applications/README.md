@@ -1,3 +1,6 @@
+# Real-World Applications
+## ASGI vs. WSGI: Understanding the differences and benefits
+### WSGI and Gunicorn
 WSGI stands for web server gateway interface. 
 As the [official documentation of WSGI](https://peps.python.org/pep-3333/) indicates,
 it is created standard interface between web servers and python applications (or frameworks).
@@ -33,3 +36,16 @@ is an important parameter in gunicorn, which is the number of worker processes f
 [`worker_class`](https://docs.gunicorn.org/en/latest/settings.html#worker-class) 
 parameter determines different modes of workers, which is `sync` by default.
 There are other modes e.g. `gevent` and `eventlet` are  asynchronous workers.
+
+### ASGI and Uvicorn
+
+
+### The Comparison
+
+
+## Building REST APIs with async Python: Principles and best practices
+
+
+## Introduction to Starlette framework for async web applications
+
+## Exploring practical examples of async Python in real-world scenarios
