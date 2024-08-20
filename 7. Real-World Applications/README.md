@@ -26,7 +26,7 @@ def app(environ, start_response):
 
 In order to run this app, this command can be used:
 ```shell
-$ gunicorn --workers=2 --worker_class='sync' test:app
+$ gunicorn --workers=2 --worker_class='sync' ex_7_1:app
 ```
 
 [`workers`](https://docs.gunicorn.org/en/latest/settings.html#workers)
@@ -40,13 +40,38 @@ There are other modes e.g. `gevent` and `eventlet` are  asynchronous workers.
 Moreover, you've to consider that Gunicorn only supports HTTP/1.1.
 
 ### ASGI and Uvicorn
-[ASGI](https://asgi.readthedocs.io/en/latest/) (Asynchronous Server Gateway Interface)
-is a spiritual successor to WSGI, intended to provide a standard interface between async-capable Python applications and web server.
+[ASGI](https://asgi.readthedocs.io/en/latest/) (Asynchronous Server Gateway Interface) is a spiritual successor to WSGI,
+intended to provide a standard interface between async-capable Python applications and web server.
 It also supports HTTP/1.1, HTTP/2 and websocket connection.
 
 [Uvicorn](https://www.uvicorn.org/) is an ASGI web server implementation for Python.
+Uvicorn uses the [ASGI specification](https://asgi.readthedocs.io/en/latest/) for interacting with an application.
 
+Let's see an example of python application which runs with uvicorn from official document:
+```python
+# ex_7_2
+async def app(scope, receive, send):
+    assert scope['type'] == 'http'
 
+    await send({
+        'type': 'http.response.start',
+        'status': 200,
+        'headers': [
+            [b'content-type', b'text/plain'],
+        ],
+    })
+    await send({
+        'type': 'http.response.body',
+        'body': b'Hello, world!',
+    })
+```
+You can find the meaning of each `scope`, `receive` and `send` [here](https://www.uvicorn.org/#the-asgi-interface).
+
+In order to run this app, use the command below:
+```shell
+uvicorn ex_7_2:app
+```
+To know about additional parameters to pass, [this link](https://www.uvicorn.org/#command-line-options) is helpful.
 ## Building REST APIs with async Python: Principles and best practices
 
 
