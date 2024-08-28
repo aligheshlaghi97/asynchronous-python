@@ -72,9 +72,11 @@ In order to run this app, use the command below:
 uvicorn ex_7_2:app
 ```
 To know about additional parameters to pass, [this link](https://www.uvicorn.org/#command-line-options) is helpful.
-## Building REST APIs with async Python: Principles and best practices
+## Building RESTful APIs with async Python: Introduction to Starlette microframework
+As described [here](https://positiwise.com/blog/difference-between-restapi-restful-api),
+a RESTful API is an Application Programming Interface (API) 
+that uses the Representational State Transfer (REST) architectural style for its implementation. 
+[Statelessness](https://aws.amazon.com/what-is/restful-api/#:~:text=discover%20more%20resources.-,Statelessness,-In%20REST%20architecture) 
+is one of its main characteristics.
 
-
-## Introduction to Starlette framework for async web applications
-
-## Exploring practical examples of async Python in real-world scenarios
+According to [this link](https://fastapi.tiangolo.com/benchmarks/), FastAPI uses Starlette internally

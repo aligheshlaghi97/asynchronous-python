@@ -48,14 +48,7 @@ This repository serves as a comprehensive resource for learning about asynchrono
 
 7.  * **Real-World Applications**
       - ASGI vs. WSGI: Understanding the differences and benefits
-      - Building REST APIs with async Python: Principles and best practices
-      - Introduction to Starlette framework for async web applications
-      - Exploring practical examples of async Python in real-world scenarios
-
-8. * **Community and Resources**
-      - Engaging with the async Python community
-      - Recommended resources for further learning and exploration
-      - Encouraging contributions and collaboration on async Python projects
+      - Building RESTful APIs with async Python: Introduction to Starlette microframework
 
 ## How to Get Started:
 
