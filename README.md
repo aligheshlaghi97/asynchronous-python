@@ -46,7 +46,7 @@ This repository serves as a comprehensive resource for learning about asynchrono
      - Highlighting async-related improvements and additions in Python 3.11 and 3.12
      - Practical examples demonstrating the use of newer Python versions features in async programming
 
-7.  * **Real-World Applications**
+7.  * **Web Applications**
       - ASGI vs. WSGI: Understanding the differences and benefits
       - Building RESTful APIs with async Python: Introduction to Starlette microframework
 

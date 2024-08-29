@@ -1,4 +1,4 @@
-# Real-World Applications
+# Web Applications
 ## ASGI vs. WSGI: Understanding the differences and benefits
 ### WSGI and Gunicorn
 WSGI stands for web server gateway interface. 
@@ -79,4 +79,30 @@ that uses the Representational State Transfer (REST) architectural style for its
 [Statelessness](https://aws.amazon.com/what-is/restful-api/#:~:text=discover%20more%20resources.-,Statelessness,-In%20REST%20architecture) 
 is one of its main characteristics.
 
-According to [this link](https://fastapi.tiangolo.com/benchmarks/), FastAPI uses Starlette internally
+Well-known [FastAPI](https://fastapi.tiangolo.com/) 
+is an API microframework and [uses Starlette internally](https://fastapi.tiangolo.com/benchmarks/).
+FastAPI has more features built on top of Starlette for creating APIs 
+e.g. data validation and serialization, swagger documentation, ...
+
+Let's see an example from [Starlette documentation](https://www.starlette.io/):
+
+```python
+# ex_7_3
+from starlette.applications import Starlette
+from starlette.responses import JSONResponse
+from starlette.routing import Route
+
+
+async def homepage(request):
+    return JSONResponse({'hello': 'world'})
+
+
+app = Starlette(debug=True, routes=[
+    Route('/', homepage),
+])
+```
+
+And then run application with `Uvicorn` with 4 workers. Consider that `ex_7_3` is our python file name.
+```shell
+uvicorn ex_7_3:app --workers 4
+```
