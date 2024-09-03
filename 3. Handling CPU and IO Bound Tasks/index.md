@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Chapter 3: Handling CPU and I/O Bound Tasks"
+permalink: /chapter3/
+---
+
 # Handling CPU and I/O Bound Tasks
 ## CPU-bound vs I/O-bound
 So, a very basic question: What are CPU-bound and I/O-bound tasks, and how do they differ from each other? 

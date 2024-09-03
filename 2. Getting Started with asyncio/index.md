@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Chapter 2: Getting Started with asyncio"
+permalink: /chapter2/
+---
+
 # Getting Started with asyncio
 ## Overview of the asyncio module in Python
 

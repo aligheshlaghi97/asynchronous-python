@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Chapter 4: Synchronization and Coordination"
+permalink: /chapter4/
+---
+
 # Synchronization and Coordination
 ## Managing shared resources and avoiding race conditions
 So what are race conditions and how do they happen?

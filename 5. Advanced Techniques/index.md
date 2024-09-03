@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Chapter 5: Advanced Techniques"
+permalink: /chapter5/
+---
+
 # Advanced Techniques
 ## Error handling and exception propagation in async Python
 Handling exceptions in asyncio can be tricky but is a very important concept to understand.

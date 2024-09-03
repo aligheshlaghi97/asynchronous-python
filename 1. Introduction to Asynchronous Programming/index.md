@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Chapter 1: Introduction to Asynchronous Programming"
+permalink: /chapter1/
+---
+
 # Introduction to Asynchronous Programming
 ## What is asynchronous programming?
 Starting with a broad question, aren't we? Well, when it comes to asynchronous programming, the goal is to execute multiple tasks within our code simultaneously. 

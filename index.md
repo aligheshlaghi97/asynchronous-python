@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Async Python Playground"
+permalink: /
+---
+
 # Async Python Playground
 
 Welcome to the Async Python Playground repository! 🚀

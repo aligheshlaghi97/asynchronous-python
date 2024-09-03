@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Chapter 6: Exploring Python 3.12 Features"
+permalink: /chapter6/
+---
+
 # Exploring Python 3.12 Features
 ## Overview of new features and enhancements in Python 3.12
 As Geir Arne Hjelle says in 

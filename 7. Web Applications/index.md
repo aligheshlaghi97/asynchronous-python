@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Chapter 7: Web Applications"
+permalink: /chapter7/
+---
+
 # Web Applications
 ## ASGI vs. WSGI: Understanding the differences and benefits
 ### WSGI and Gunicorn
