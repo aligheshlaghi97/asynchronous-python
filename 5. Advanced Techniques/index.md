@@ -13,7 +13,7 @@ The following example, inspired by Jason Brownlee's article
 [found here](https://superfastpython.com/asyncio-task-exceptions/#Example_of_Checking_for_an_Exception_in_a_Failed_Task),
 demonstrates how to handle exceptions. In this example, we await longer_task while shorter_task raises an exception.
 
-```python3
+```python
 # ex_5_1
 async def shorter_task():
     # do something quickly
@@ -36,7 +36,7 @@ it will result in an error: `asyncio.exceptions.InvalidStateError: Exception is 
 
 Now let's create our own exception handler and utilize it with previous ex_5_1. 
 In order to do it, we've to grab event loop and set the exception handler to it.
-```python3
+```python
 # ex_5_2
 def exception_handler(loop, context):
     ex = context['exception']
@@ -62,7 +62,7 @@ async def main():
 
 Now let's take a look at an example of canceling a task and catching tbe error inspired by
 [this example](https://stackoverflow.com/questions/56052748/python-asyncio-task-cancellation).
-```python3
+```python
 # ex_5_3
 async def cancel_me():
     await asyncio.sleep(1)
@@ -87,7 +87,7 @@ This pattern helps in organizing and managing complex asynchronous workflows.
 Consider that done callback is triggered when the task is done.
 Let's take a look at an example, inspired by 
 [Jason's article](https://superfastpython.com/asyncio-coroutine-chaining/#Example_of_Automatic_Chaining_of_Coroutines_With_Callbacks).
-```python3
+```python
 # ex_5_4
 async def task1():
     print('>task1()')
@@ -130,7 +130,7 @@ Additionally, for asynchronous programming within coroutines, Python offers the 
 
 Let's take a look at 
 [this example](https://cprieto.com/posts/2021/07/queues-with-python-asyncio.html) from Cristian Prieto:
-```python3
+```python
 async def producer(channel: asyncio.Queue):
     for num in range(0, 5):
         await asyncio.sleep(1)

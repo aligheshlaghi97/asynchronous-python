@@ -23,7 +23,7 @@ But later on, we might explore some trickier low-level ones.
 we can use runners to a coroutine (as a reminder, sth possible to await) as we saw previously.
 We can run `asyncio.sleep` function this way in `async_sleep_for_one_second` coroutine:
 
-```python3
+```python
 # ex_2_1
 async def async_sleep_for_one_second():
     print('stared sleeping for 1 second!')
@@ -34,7 +34,7 @@ asyncio.run(async_sleep_for_one_second())
 ```
 
 We can use `asyncio.run` using context manager to run the above coroutine:
-```python3
+```python
 # ex_2_2
 with asyncio.Runner() as runner:
     runner.run(async_sleep_for_one_second())
@@ -51,7 +51,7 @@ a context manager is handy. In the provided example, the `close` method of the r
 As we'll see in the following example 
 [from asyncio document](https://docs.python.org/3/library/asyncio-task.html#awaitables), 
 just by calling a coroutine (without awaiting it), nothing happens:
-```python3
+```python
 # ex_2_3
 async def nested():
     return 42
@@ -71,7 +71,7 @@ asyncio.run(main())
 
 Now let's create some tasks and await it. We'll see it works just fine.
 
-```python3
+```python
 # ex_2_4
 async def sleep_coro(delay):
     print(f'Started sleeping for {delay} seconds!')
@@ -87,7 +87,7 @@ asyncio.run(main())
 <br>
 
 By creating task and awaiting them, we can run multiple tasks concurrently, as `task1` and `task2` in the following example:
-```python3
+```python
 # ex_2_5
 async def main():
     task1 = asyncio.create_task(sleep_coro(1))
@@ -104,7 +104,7 @@ asyncio.run(main())
 
 In the following example, we get the event loop, create a task inside that loop and await it to run.
 The result is the same with ex_2_4
-```python3
+```python
 # ex_2_6
 async def main():
     loop = asyncio.get_event_loop()
@@ -118,7 +118,7 @@ asyncio.run(main())
 ## Other important APIs of asyncio
 We can use `asyncio.TaskGroup` (using context manager) to run tasks concurrently, 
 [in example below](https://docs.python.org/3/library/asyncio-task.html#task-groups): 
-```python3
+```python
 # ex_2_7
 async def main():
     print('Before running task group!')
@@ -132,7 +132,7 @@ async def main():
 
 We can use `asyncio.wait_for` function to run a coroutine and wait until a timeout.
 In this example, the coroutine takes 2 seconds to run completely, but a timeout error will be raised after 1st second.
-```python3
+```python
 # ex_2_8
 async def main():
     try:

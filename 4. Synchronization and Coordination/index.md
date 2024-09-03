@@ -21,7 +21,7 @@ resulting in the variable a being incorrectly set to `1` instead of the correct 
 
 Below you can see a similar example (with some minor changes) from Jason Brownlee in 
 [SuperFastPython for asyncio race conditions](https://superfastpython.com/asyncio-race-conditions/):
-```python3
+```python
 # ex_4_1
 async def task():
     global value
@@ -47,7 +47,7 @@ To solve the problem above, we can use `asyncio.Lock`.
 [An asyncio lock can be used to guarantee exclusive access to a shared resource.](https://docs.python.org/3/library/asyncio-sync.html#asyncio.Lock)
 
 We can use such a syntax to use locks:
-```python3
+```python
 # ex_4_2
 async def task(lock):
     async with lock:
@@ -65,7 +65,7 @@ For fast response, 0.01s delay decreased to 0.
 To limit access to some resources, semaphores are used. 
 I'll bring the example from [this article](https://medium.com/@kalmlake/async-io-in-python-sync-primitives-19524a10b9da)
 (with some minor changes) to illustrate how a semaphore works.
-```python3
+```python
 # ex_4_3
 async def limited_resource(sem):
     async with sem:
@@ -87,7 +87,7 @@ Then it will sleep for 1s and after releasing the resources the remaining two ac
 A barrier is a simple synchronization primitive that allows to block until parties number of tasks are waiting on it.
 Tasks can wait on the `wait()` method and would be blocked until the specified number of tasks end up waiting on `wait()`
 
-```python3
+```python
 # ex_4_4
 async def example_barrier():
     b = asyncio.Barrier(3)
@@ -117,7 +117,7 @@ An example from the [official asyncio documentation](https://docs.python.org/3/l
 can help us understand events.
 
 
-```python3
+```python
 # ex_4_5
 async def waiter(event):
     print('waiting for it ...')

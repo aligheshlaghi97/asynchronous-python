@@ -29,7 +29,7 @@ HTTPX can manage both asynchronous and synchronous requests, allowing us to benc
 Here is example 3_1 to get started with HTTPX:
 
 
-```python3
+```python
 # ex_3_1
 async def main():
     t = time.time()
@@ -40,7 +40,7 @@ async def main():
 ```
 
 Now lets create some tasks of async requesting to run concurrently, as we learnt in previous section:
-```python3
+```python
 # ex_3_2
 async def main():
     t = time.time()
@@ -60,7 +60,7 @@ The times recorded in examples 3_1 and 3_2 are very close,
 indicating that example 3_2 is running the requests concurrently.
 
 We can also gather all the tasks using `asyncio.gather`, doing literally the same thing as in example 3_2.
-```python3
+```python
 # ex_3_3
 async def main():
     url = 'https://www.example.com/'
@@ -76,7 +76,7 @@ The list comprehension creates the list all at once without appending or extendi
 Now, let's look at an example using httpx's synchronous APIs,
 which takes roughly three times longer than the previous examples.
 
-```python3
+```python
 # ex_3_4
 url = 'https://www.example.org/'
 response1 = httpx.get(url)
@@ -92,7 +92,7 @@ First, we define a CPU-bound task that simply adds a value to the `_sum` variabl
 To utilize the multiprocessing library, we use partial functions, 
 which are the same functions with some variables pre-set. 
 Running the code in the next example, we see the speed double.
-```python3
+```python
 # ex_3_5
 def cpu_bound_task(a: int, n: int) -> float:
     _sum = 0

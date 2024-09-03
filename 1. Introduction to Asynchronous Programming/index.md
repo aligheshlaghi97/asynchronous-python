@@ -39,7 +39,7 @@ Coroutines have been described as ["functions whose execution you can pause"](ht
 This seems confusing, but wait, we will clarify it.
 Anything in Python that can be implemented with the ```async def``` statement is a coroutine. <br>
 Here ```func``` is a coroutine:
-```python3
+```python
 async def func():
     pass
 ```
