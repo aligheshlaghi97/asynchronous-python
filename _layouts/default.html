@@ -8,18 +8,25 @@
 </head>
 <body>
     <header>
-        <h1>{{ site.title }}</h1>
+        <div class="container">
+            <h1>{{ site.title }}</h1>
+            <p>{{ site.description }}</p>
+            <button id="theme-toggle">Toggle Dark Mode</button>
+        </div>
     </header>
     <div class="container">
-        <aside>
+        <aside class="sidebar">
             {% include sidebar.html %}
         </aside>
-        <main>
+        <main class="content">
             {{ content }}
         </main>
     </div>
     <footer>
-        <p>&copy; {{ site.time | date: '%Y' }}</p>
+        <div class="container">
+            <p>&copy; {{ site.time | date: '%Y' }} | <a href="https://github.com/aligheshlaghi97/asynchronous-python"
+                                                        target="_blank">View on GitHub</a></p>
+        </div>
     </footer>
 </body>
 </html>
