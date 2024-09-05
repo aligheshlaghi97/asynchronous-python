@@ -47,31 +47,12 @@ and call it for one million times. We use `eager_task_factory` and `TaskGroup` i
 but use `gather` without `eager_task_factory` in the second one (ex_6_2).
 ```python
 # ex_6_1
-async def light_coro():
-    pass
-
-async def main():
-    print('Before running task group!')
-    time0 = time.time()
-    asyncio.get_event_loop().set_task_factory(asyncio.eager_task_factory)
-    async with asyncio.TaskGroup() as tg:
-        for _ in range(1000000):
-            tg.create_task(light_coro())
-    print(f'It took {time.time() - time0} to run!')
-    print('After running task group with eager task factory!')
+{% include_relative ex_6_1.py %}
 ```
 
 ```python
 # ex_6_2
-async def main():
-    print('Before running task group!')
-    tasks_list = [light_coro() for _ in range(1000000)]
-    time0 = time.time()
-    tasks = asyncio.gather(*tasks_list)
-    await tasks
-
-    print(f'It took {time.time() - time0} to run!')
-    print('After running gather without eager task factory!')
+{% include_relative ex_6_2.py %}
 ```
 So we see that using `eager_task_factory` can be quite useful.
 And the official documentation's recommendation to use `TaskGroup` over `gather` makes sense now.
@@ -83,10 +64,5 @@ it takes 0.05 seconds with Python 3.12 versus 0.33 seconds with Python 3.10 in m
 
 ```python
 # ex_6_3
-async def main():
-    t1 = time.time()
-    for _ in range(10 ** 6):
-        asyncio.current_task()
-    t2 = time.time()
-    print(f'It took {t2-t1}s')
+{% include_relative ex_6_3.py %}
 ```

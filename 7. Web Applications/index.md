@@ -19,15 +19,7 @@ Let's see an example of Gunicorn from its official document.
 
 ```python
 # ex_7_1
-def app(environ, start_response):
-    data = b'Hello, World!\n'
-    status = '200 OK'
-    response_headers = [
-        ('Content-type', 'text/plain'),
-        ('Content-Length', str(len(data)))
-    ]
-    start_response(status, response_headers)
-    return iter([data])
+{% include_relative ex_7_1.py %}
 ```
 
 In order to run this app, this command can be used:
@@ -56,20 +48,7 @@ Uvicorn uses the [ASGI specification](https://asgi.readthedocs.io/en/latest/) fo
 Let's see an example of python application which runs with uvicorn from official document:
 ```python
 # ex_7_2
-async def app(scope, receive, send):
-    assert scope['type'] == 'http'
-
-    await send({
-        'type': 'http.response.start',
-        'status': 200,
-        'headers': [
-            [b'content-type', b'text/plain'],
-        ],
-    })
-    await send({
-        'type': 'http.response.body',
-        'body': b'Hello, world!',
-    })
+{% include_relative ex_7_2.py %}
 ```
 You can find the meaning of each `scope`, `receive` and `send` [here](https://www.uvicorn.org/#the-asgi-interface).
 
@@ -94,18 +73,7 @@ Let's see an example from [Starlette documentation](https://www.starlette.io/):
 
 ```python
 # ex_7_3
-from starlette.applications import Starlette
-from starlette.responses import JSONResponse
-from starlette.routing import Route
-
-
-async def homepage(request):
-    return JSONResponse({'hello': 'world'})
-
-
-app = Starlette(debug=True, routes=[
-    Route('/', homepage),
-])
+{% include_relative ex_7_3.py %}
 ```
 
 And then run application with `Uvicorn` with 4 workers. Consider that `ex_7_3` is our python file name.
