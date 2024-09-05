@@ -31,7 +31,7 @@ Here is example 3_1 to get started with HTTPX:
 
 ```python
 # ex_3_1
-{% include_relative /3.\ Handling\ CPU\ and\ IO\ Bound\ Tasks/ex_3_1.py %}
+{% include_relative /3. Handling CPU and IO Bound Tasks/ex_3_1.py %}
 async def main():
     t = time.time()
     async with httpx.AsyncClient() as client:
