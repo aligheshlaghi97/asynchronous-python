@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Chapter 5: Advanced Techniques"
+permalink: /chapter5/
+---
+
 # Advanced Techniques
 ## Error handling and exception propagation in async Python
 Handling exceptions in asyncio can be tricky but is a very important concept to understand.
@@ -7,22 +13,9 @@ The following example, inspired by Jason Brownlee's article
 [found here](https://superfastpython.com/asyncio-task-exceptions/#Example_of_Checking_for_an_Exception_in_a_Failed_Task),
 demonstrates how to handle exceptions. In this example, we await longer_task while shorter_task raises an exception.
 
-```python3
+```python
 # ex_5_1
-async def shorter_task():
-    # do something quickly
-    raise Exception('Some exception happened!')
-
-async def longer_task():
-    # do something that takes long
-    ...
-
-async def main():
-    task1 = asyncio.create_task(shorter_task())
-    task2 = asyncio.create_task(longer_task())
-    await task2
-    ex = task1.exception()
-    print(f'Exception: {ex}')
+{% include_relative ex_5_1.py %}
 ```
 The above code works if `longer_task` takes more time to complete than `shorter_task`. 
 Otherwise, if `task1.exception()` is called before `shorter_task` raises an exception,
@@ -30,46 +23,17 @@ it will result in an error: `asyncio.exceptions.InvalidStateError: Exception is 
 
 Now let's create our own exception handler and utilize it with previous ex_5_1. 
 In order to do it, we've to grab event loop and set the exception handler to it.
-```python3
+```python
 # ex_5_2
-def exception_handler(loop, context):
-    ex = context['exception']
-    print(f'Exception: {ex}')
-
-async def shorter_task():
-    ...
-
-async def longer_task():
-    ...
-
-async def main():
-    print('Main coroutine started!')
-    loop = asyncio.get_running_loop()
-    loop.set_exception_handler(exception_handler)
-    task1 = asyncio.create_task(shorter_task())
-    task2 = asyncio.create_task(longer_task())
-    await task2
-    print('Main coroutine done!')
-
+{% include_relative ex_5_2.py %}
 ```
 <br>
 
 Now let's take a look at an example of canceling a task and catching tbe error inspired by
 [this example](https://stackoverflow.com/questions/56052748/python-asyncio-task-cancellation).
-```python3
+```python
 # ex_5_3
-async def cancel_me():
-    await asyncio.sleep(1)
-
-async def main():
-    task = asyncio.create_task(cancel_me())
-    await asyncio.sleep(0.01)
-
-    task.cancel()
-    try:
-        await task
-    except asyncio.CancelledError:
-        print("main(): cancel_me is cancelled now")
+{% include_relative ex_5_3.py %}
 ```
 
 ## Chaining coroutines using callback and event to compose more complex async workflows
@@ -81,32 +45,9 @@ This pattern helps in organizing and managing complex asynchronous workflows.
 Consider that done callback is triggered when the task is done.
 Let's take a look at an example, inspired by 
 [Jason's article](https://superfastpython.com/asyncio-coroutine-chaining/#Example_of_Automatic_Chaining_of_Coroutines_With_Callbacks).
-```python3
+```python
 # ex_5_4
-async def task1():
-    print('>task1()')
-    await asyncio.sleep(1)
-    return 1
-
-async def task2(data):
-    print(f'>task2() got {data}')
-    await asyncio.sleep(1)
-
-def callback2(task):
-    global event
-    event.set()
-
-def callback1(task):
-    result = task.result()
-    second_task = asyncio.create_task(task2(result))
-    second_task.add_done_callback(callback2)
-
-async def main():
-    global event
-    event = asyncio.Event()
-    first_task = asyncio.create_task(task1())
-    first_task.add_done_callback(callback1)
-    await event.wait()
+{% include_relative ex_5_4.py %}
 ```
 In example above inside main coroutine, we initialize an event, and create task for `task1` and call `add_done_callback`
 with `callback1` coroutine. After `task1` finishes, `callback1` is triggered which gets the result of `task1`
@@ -124,22 +65,9 @@ Additionally, for asynchronous programming within coroutines, Python offers the 
 
 Let's take a look at 
 [this example](https://cprieto.com/posts/2021/07/queues-with-python-asyncio.html) from Cristian Prieto:
-```python3
-async def producer(channel: asyncio.Queue):
-    for num in range(0, 5):
-        await asyncio.sleep(1)
-        await channel.put(num)
-
-async def consumer(channel: asyncio.Queue):
-    while True:
-        item = await channel.get()
-        print(f'Got number {item}')
-
-async def main():
-    channel = asyncio.Queue()
-    cons = asyncio.create_task(consumer(channel))
-    await producer(channel)
-    print('Done!')
+```python
+# ex_5_5
+{% include_relative ex_5_5.py %}
 ```
 As Cristian Prieto says, in this example, `asyncio.Queue` is our way to communicate between the producer of items
 and its consumer, it will await until the queue has an item to give us.
@@ -156,13 +84,7 @@ Every `asyncio.Future` has some APIs to call, most important ones are:<br>
 Now let's use these APIs inside an example:
 ```python
 # ex_5_6
-async def main():
-    future = asyncio.Future()
-    print(f'future status is done: {future.done()}')
-    future.set_result(10)
-    print(f'future status is done: {future.done()}, future result: {future.result()}')
-    result = await future
-    print(f'future result after being awaited: {result}')
+{% include_relative ex_5_6.py %}
 ```
 
 In example above, we create a future, check if it's done or not (using `done()`), 

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page.title }}</title>
+    
+{% seo %}
+    <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+    {% include head-custom.html %}
+    
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <h1>{{ site.title }}</h1>
+            <p>{{ site.description }}</p>
+<!--            <button id="theme-toggle">Toggle Dark Mode</button>-->
+            <p class="sidebar">{% include sidebar.html %}</p>
+        </header>
+        
+        <section>
+
+            {{ content }}
+        
+        </section>
+        
+    <footer>
+        <p>&copy; {{ site.time | date: '%Y' }} | <a href="https://github.com/aligheshlaghi97/asynchronous-python"
+                                                        target="_blank">View on GitHub</a></p>
+        <p>
+            <a href="https://github.com/aligheshlaghi97/asynchronous-python/stargazers">
+                <img alt="GitHub stars" src="https://img.shields.io/github/stars/aligheshlaghi97/asynchronous-python?style=social">
+            </a>
+            <a href="https://github.com/aligheshlaghi97/asynchronous-python/network/members">
+                <img alt="GitHub forks" src="https://img.shields.io/github/forks/aligheshlaghi97/asynchronous-python?style=social">
+            </a>
+        </p>
+    </footer>
+    </div>
+    <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
+<!--    <script src="{{ "/assets/js/theme.js" | relative_url }}"></script>-->
+</body>
+</html>
+

@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Chapter 4: Synchronization and Coordination"
+permalink: /chapter4/
+---
+
 # Synchronization and Coordination
 ## Managing shared resources and avoiding race conditions
 So what are race conditions and how do they happen?
@@ -15,22 +21,9 @@ resulting in the variable a being incorrectly set to `1` instead of the correct 
 
 Below you can see a similar example (with some minor changes) from Jason Brownlee in 
 [SuperFastPython for asyncio race conditions](https://superfastpython.com/asyncio-race-conditions/):
-```python3
+```python
 # ex_4_1
-async def task():
-    global value
-    tmp = value
-    await asyncio.sleep(0.01)
-    tmp = tmp + 1
-    await asyncio.sleep(0.01)
-    value = tmp
-
-async def main():
-    global value
-    value = 0
-    coroutines = [task() for _ in range(10000)]
-    await asyncio.gather(*coroutines)
-    print(value)
+{% include_relative ex_4_1.py %}
 ```
 In above example, variable `value` must be `10000` but it's `1` in the end.
 This race condition happens due to suspending the `task` coroutine using `asyncio.sleep` for 0.01s.
@@ -41,16 +34,9 @@ To solve the problem above, we can use `asyncio.Lock`.
 [An asyncio lock can be used to guarantee exclusive access to a shared resource.](https://docs.python.org/3/library/asyncio-sync.html#asyncio.Lock)
 
 We can use such a syntax to use locks:
-```python3
+```python
 # ex_4_2
-async def task(lock):
-    async with lock:
-        # access shared state
-
-async def main():
-    lock = asyncio.Lock()
-    coroutines = [task(lock) for _ in range(10000)]
-    await asyncio.gather(*coroutines)
+{% include_relative ex_4_2.py %}
 ```
 As provided in ex_4_2, a lock created inside `main` and passed to `task` coroutine. 
 For fast response, 0.01s delay decreased to 0.
@@ -59,18 +45,9 @@ For fast response, 0.01s delay decreased to 0.
 To limit access to some resources, semaphores are used. 
 I'll bring the example from [this article](https://medium.com/@kalmlake/async-io-in-python-sync-primitives-19524a10b9da)
 (with some minor changes) to illustrate how a semaphore works.
-```python3
+```python
 # ex_4_3
-async def limited_resource(sem):
-    async with sem:
-        print("Accessing limited resource")
-        await asyncio.sleep(1)
-        print("Finished using limited resource")
-
-async def main():
-    sem = asyncio.Semaphore(2)
-    tasks = [limited_resource(sem) for _ in range(4)]
-    await asyncio.gather(*tasks)
+{% include_relative ex_4_3.py %}
 ```
 Running above example, we want to access a limited resouce for 4 time. 
 We see that only two acquisitions of limited resource happens at first. 
@@ -81,20 +58,9 @@ Then it will sleep for 1s and after releasing the resources the remaining two ac
 A barrier is a simple synchronization primitive that allows to block until parties number of tasks are waiting on it.
 Tasks can wait on the `wait()` method and would be blocked until the specified number of tasks end up waiting on `wait()`
 
-```python3
+```python
 # ex_4_4
-async def example_barrier():
-    b = asyncio.Barrier(3)
-    asyncio.create_task(b.wait())
-    asyncio.create_task(b.wait())
-
-    await asyncio.sleep(0)
-    print(b)
-    await b.wait()
-    print(b)
-    print("barrier passed")
-    await asyncio.sleep(0)
-    print(b)
+{% include_relative ex_4_4.py %}
 ```
 Running example above, results in the below response:
 ```shell
@@ -111,19 +77,9 @@ An example from the [official asyncio documentation](https://docs.python.org/3/l
 can help us understand events.
 
 
-```python3
+```python
 # ex_4_5
-async def waiter(event):
-    print('waiting for it ...')
-    await event.wait()
-    print('... got it!')
-
-async def main():
-    event = asyncio.Event()
-    waiter_task = asyncio.create_task(waiter(event))
-    await asyncio.sleep(1)
-    event.set()
-    await waiter_task
+{% include_relative ex_4_5.py %}
 ```
 In the example above, the main thread will sleep for 1 second before setting the event. 
 `asyncio.Condition` is similar to an event but includes lock methods. <br>

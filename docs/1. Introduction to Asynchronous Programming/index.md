@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Chapter 1: Introduction to Asynchronous Programming"
+permalink: /chapter1/
+---
+
 # Introduction to Asynchronous Programming
 ## What is asynchronous programming?
 Starting with a broad question, aren't we? Well, when it comes to asynchronous programming, the goal is to execute multiple tasks within our code simultaneously. 
@@ -33,7 +39,7 @@ Coroutines have been described as ["functions whose execution you can pause"](ht
 This seems confusing, but wait, we will clarify it.
 Anything in Python that can be implemented with the ```async def``` statement is a coroutine. <br>
 Here ```func``` is a coroutine:
-```python3
+```python
 async def func():
     pass
 ```

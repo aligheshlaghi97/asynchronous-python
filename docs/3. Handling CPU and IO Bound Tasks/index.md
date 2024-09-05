@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Chapter 3: Handling CPU and I/O Bound Tasks"
+permalink: /chapter3/
+---
+
 # Handling CPU and I/O Bound Tasks
 ## CPU-bound vs I/O-bound
 So, a very basic question: What are CPU-bound and I/O-bound tasks, and how do they differ from each other? 
@@ -23,44 +29,24 @@ HTTPX can manage both asynchronous and synchronous requests, allowing us to benc
 Here is example 3_1 to get started with HTTPX:
 
 
-```python3
+```python
 # ex_3_1
-async def main():
-    t = time.time()
-    async with httpx.AsyncClient() as client:
-        response = await client.get('https://www.example.com/')
-        print(response)
-    print(f"it took {time.time() - t} s")
+{% include_relative ex_3_1.py %}
 ```
 
 Now lets create some tasks of async requesting to run concurrently, as we learnt in previous section:
-```python3
+```python
 # ex_3_2
-async def main():
-    t = time.time()
-    async with httpx.AsyncClient() as client:
-        task1 = asyncio.create_task(client.get('https://www.example.com/'))
-        task2 = asyncio.create_task(client.get('https://www.example.com/'))
-        task3 = asyncio.create_task(client.get('https://www.example.com/'))
-        response1 = await task1
-        response2 = await task2
-        response3 = await task3
-        print(f'response1: {response1}, response2: {response2}, response3: {response3}')
-    print(f'It took {time.time() - t} s')
-
+{% include_relative ex_3_2.py %}
 ```
 
 The times recorded in examples 3_1 and 3_2 are very close,
 indicating that example 3_2 is running the requests concurrently.
 
 We can also gather all the tasks using `asyncio.gather`, doing literally the same thing as in example 3_2.
-```python3
+```python
 # ex_3_3
-async def main():
-    url = 'https://www.example.com/'
-    async with httpx.AsyncClient() as client:
-        tasks = [client.get(url) for _ in range(3)]
-        obj = await asyncio.gather(*tasks)
+{% include_relative ex_3_3.py %}
 ```
 
 In this example, a list comprehension is utilized to create the `task` list,
@@ -70,12 +56,9 @@ The list comprehension creates the list all at once without appending or extendi
 Now, let's look at an example using httpx's synchronous APIs,
 which takes roughly three times longer than the previous examples.
 
-```python3
+```python
 # ex_3_4
-url = 'https://www.example.org/'
-response1 = httpx.get(url)
-response2 = httpx.get(url)
-response3 = httpx.get(url)
+{% include_relative ex_3_4.py %}
 ```
 
 ## Performing asynchronous CPU operations
@@ -86,28 +69,9 @@ First, we define a CPU-bound task that simply adds a value to the `_sum` variabl
 To utilize the multiprocessing library, we use partial functions, 
 which are the same functions with some variables pre-set. 
 Running the code in the next example, we see the speed double.
-```python3
+```python
 # ex_3_5
-def cpu_bound_task(a: int, n: int) -> float:
-    _sum = 0
-    for number in range(n):
-        _sum += a
-    return _sum
-
-t = time.time()
-value = cpu_bound_task(2, 100000000)
-print(f'value: {value}')
-value = cpu_bound_task(2, 100000000)
-print(f'It took without multiprocessing {time.time() - t} s')
-print(f'value: {value}')
-
-cpu_bound_partial = partial(cpu_bound_task, 2)
-
-with Pool(2) as p:
-    t = time.time()
-    value = p.map(cpu_bound_partial, [100000000, 100000000])
-    print(f'It took with multiprocessing {time.time() - t} s')
-    print(f'value: {value}')
+{% include_relative ex_3_5.py %}
 ```
 
 ##Strategies for balancing CPU and I/O-bound workloads in async Python applications
