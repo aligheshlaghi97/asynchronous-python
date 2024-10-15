@@ -9,6 +9,7 @@ sys.path.append(os.path.abspath('docs/4. Synchronization and Coordination'))
 import ex_4_1 as ex1
 import ex_4_2 as ex2
 import ex_4_3 as ex3
+import ex_4_4 as ex4
 
 
 class TestEx1AsyncTask(unittest.TestCase):
@@ -84,6 +85,30 @@ class TestEx3Semaphore(unittest.IsolatedAsyncioTestCase):
 
             mocked_print.assert_any_call("Accessing limited resource")
             mocked_print.assert_any_call("Finished using limited resource")
+
+
+class TestEx4Barrier(unittest.TestCase):
+    @patch('asyncio.sleep', return_value=None)
+    def test_example_barrier(self, mock_sleep):
+        """Test example barrier function."""
+        with patch('builtins.print') as mock_print:
+            asyncio.run(ex4.example_barrier())
+            mock_print.assert_any_call("barrier passed")
+            calls = mock_print.call_args_list
+
+            self.assertEqual(len(calls), 4)
+
+            printed_outputs = [call[0][0] for call in calls]
+            expected_output = [
+                '[filling, waiters:0/3]',
+                '[filling, waiters:0/3]',
+                'barrier passed',
+                '[filling, waiters:0/3]',
+            ]
+            for out_idx in range(3):
+                self.assertIn(expected_output[out_idx], str(printed_outputs[out_idx]))
+
+            mock_sleep.assert_called_with(0)
 
 
 if __name__ == '__main__':
