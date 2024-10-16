@@ -10,6 +10,7 @@ import ex_4_1 as ex1
 import ex_4_2 as ex2
 import ex_4_3 as ex3
 import ex_4_4 as ex4
+import ex_4_5 as ex5
 
 
 class TestEx1AsyncTask(unittest.TestCase):
@@ -109,6 +110,32 @@ class TestEx4Barrier(unittest.TestCase):
                 self.assertIn(expected_output[out_idx], str(printed_outputs[out_idx]))
 
             mock_sleep.assert_called_with(0)
+
+
+class TestEx5EventWaiter(unittest.IsolatedAsyncioTestCase):
+    async def test_waiter(self):
+        """Test waiter(event) function."""
+        event = asyncio.Event()
+        with patch('builtins.print') as mock_print:
+            time_start = time.time()
+            waiter_task = asyncio.create_task(ex5.waiter(event))
+            event.set()
+            await waiter_task
+            time_taken = time.time() - time_start
+            self.assertLess(time_taken, 0.01)
+
+            mock_print.assert_any_call("waiting for it ...")
+            mock_print.assert_any_call("... got it!")
+
+    def test_main(self):
+        with patch('builtins.print') as mock_print:
+            time_start = time.time()
+            asyncio.run(ex5.main())
+            time_taken = time.time() - time_start
+            self.assertGreater(time_taken, 1)
+
+            mock_print.assert_any_call("waiting for it ...")
+            mock_print.assert_any_call("... got it!")
 
 
 if __name__ == '__main__':
