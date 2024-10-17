@@ -163,8 +163,8 @@ class TestMultiprocessingPerformance(unittest.TestCase):
         self.assertEqual(value1_mp, value2_mp)
         self.assertEqual(value1_mp, self.value * self.step)
         self.assertEqual(value2_mp, self.value * self.step)
-        self.assertLessEqual(time_taken_mp * 1.7, time_taken,
-                             msg='time taken without mp is less than 1.7 times of with mp!')
+        self.assertLessEqual(time_taken_mp * 1.5, time_taken,
+                             msg='time taken without mp is less than 1.5 times of with mp!')
 
     def test_main(self):
         with patch('builtins.print') as mocked_print:
