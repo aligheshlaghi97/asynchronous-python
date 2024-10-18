@@ -10,6 +10,8 @@ import ex_5_1 as ex1
 import ex_5_2 as ex2
 import ex_5_3 as ex3
 import ex_5_4 as ex4
+import ex_5_5 as ex5
+import ex_5_6 as ex6
 
 
 class TestEx1ExceptionPropagate(unittest.TestCase):
@@ -135,6 +137,36 @@ class TestEx4ChainTasks(unittest.IsolatedAsyncioTestCase):
             mocked_print.assert_any_call("Main: chain is done")
             mock_sleep.assert_any_call(1)
             self.assertTrue(ex4.event.is_set())
+
+
+class TestEx5ProducerConsumer(unittest.TestCase):
+    @patch('asyncio.sleep', return_value=None)
+    def test_producer(self, mock_sleep):
+        """Test producer function"""
+        channel = asyncio.Queue()
+        asyncio.run(ex5.producer(channel))
+        self.assertEqual(channel.qsize(), 5)
+        mock_sleep.assert_any_call(1)
+
+    @patch('asyncio.sleep', return_value=None)
+    def test_main(self, mock_sleep):
+        """Test main function"""
+        with patch('builtins.print') as mocked_print:
+            asyncio.run(ex5.main())
+            mocked_print.assert_any_call("Done!")
+            for num in range(5):
+                mocked_print.assert_any_call(f"Got number {num}")
+            mock_sleep.assert_any_call(1)
+
+
+class TestEx6Future(unittest.TestCase):
+    def test_main(self):
+        """Test main function"""
+        with patch('builtins.print') as mocked_print:
+            asyncio.run(ex6.main())
+            mocked_print.assert_any_call("future status is done: False")
+            mocked_print.assert_any_call("future status is done: True, future result: 10")
+            mocked_print.assert_any_call("future result after being awaited: 10")
 
 
 if __name__ == '__main__':
