@@ -3,8 +3,6 @@ import os
 import unittest
 from unittest.mock import patch, AsyncMock, MagicMock
 from starlette.testclient import TestClient
-import threading
-import requests
 import time
 sys.path.append(os.path.abspath('docs/7. Web Applications'))
 import ex_7_1 as ex1
