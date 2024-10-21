@@ -7,7 +7,7 @@ async def light_coro():
 
 
 async def main():
-    print('Before running task group!')
+    print('Before running gather!')
     tasks_list = [light_coro() for _ in range(1000000)]
     time0 = time.time()
 
