@@ -37,7 +37,7 @@ The [event loop](https://docs.python.org/3/library/asyncio-eventloop.html) is th
 ### coroutines
 Coroutines have been described as ["functions whose execution you can pause"](https://en.wikipedia.org/wiki/Coroutine). <br>
 This seems confusing, but wait, we will clarify it.
-Anything in Python that can be implemented with the ```async def``` statement is a coroutine. <br>
+Anything in Python that can be implemented with the ```async def``` statement is a coroutine function. <br>
 Here ```func``` is a coroutine:
 ```python
 async def func():
