@@ -48,9 +48,9 @@ This repository serves as a comprehensive resource for learning about asynchrono
      - asyncio Queue and consumer-producer workflows
      - asyncio Future
 
-6. * **Exploring Python 3.12 Features**
+6. * **Exploring New Python Versions Features**
      - Overview of new features and enhancements in Python 3.12
-     - Highlighting async-related improvements and additions in Python 3.11 and 3.12
+     - Highlighting async-related improvements and additions in Python 3.11, 3.12 and 3.13
      - Practical examples demonstrating the use of newer Python versions features in async programming
 
 7.  * **Web Applications**
