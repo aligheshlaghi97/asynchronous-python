@@ -1,10 +1,10 @@
 ---
 layout: default
-title: "Chapter 6: Exploring Python 3.12 Features"
+title: "Chapter 6: Exploring New Python Versions Features"
 permalink: /chapter6/
 ---
 
-# Exploring Python 3.12 Features
+# Exploring New Python Versions Features
 ## Overview of new features and enhancements in Python 3.12
 As Geir Arne Hjelle says in 
 [his tutorial](https://realpython.com/python312-new-features/),
@@ -19,7 +19,7 @@ I won't go into the details of these improvements, but for more information, you
 or consult the 
 [official documentation](https://docs.python.org/3/whatsnew/3.12.html).
 
-## Highlighting async-related improvements and additions in Python 3.11 and 3.12
+## Highlighting async-related improvements and additions in Python 3.11, 3.12 and 3.13
 ### In python 3.11, several important asyncio APIs were added, including:
 1. `asyncio.TaskGroup` which was demonstrated in ex_2_7. 
 The official documentation recommends using `asyncio.TaskGroup` instead of `asyncio.create_task` and `asyncio.gather` 
@@ -35,6 +35,9 @@ functions to allow opting an event loop in to eager task execution, making some 
 2. Add C implementation of `asyncio.current_task(loop=None)` for 4x-6x speedup.
 This API returns the currently running `asyncio.Task` instance, or `None` if no task is running.
 If `loop=None`, then it calls `get_running_loop()` to get the current event loop.
+
+### In Python 3.13 an API for shutdown queues added:
+1. Added `asyncio.Queue.shutdown` which will raise `asyncio.QueueShutDown` exception on `put` and `get` calls.
 
 ## Practical examples demonstrating the use of newer Python versions features in async programming
 Let's start with eager_task_factory as something quite useful in asyncio world.
@@ -66,3 +69,9 @@ it takes 0.05 seconds with Python 3.12 versus 0.33 seconds with Python 3.10 in m
 # ex_6_3
 {% include_relative ex_6_3.py %}
 ```
+
+This is also an example from `asyncio.Queue.shutdown` usage in python 3.13:
+```python
+{% include_relative ex_6_4.py %}
+```
+Running example above will raise `asyncio.QueueShutDown` error.

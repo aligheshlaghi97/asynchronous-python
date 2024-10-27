@@ -33,7 +33,7 @@ We can use `asyncio.run` using context manager to run the above coroutine:
 # ex_2_2
 {% include_relative ex_2_2.py %}
 ```
-Notice that we will be using python3.12 to run our examples through this tutorial.
+Notice that we will be using python 3.12 and above (for most of the examples) to run our examples through this tutorial.
 (e.g. python3.10 will through an error for ex_2_2)
 
 * Note: To grasp the concept of a **context manager** and its functionality with the `with` syntax, 
