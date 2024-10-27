@@ -5,7 +5,7 @@ import asyncio
 import unittest
 from unittest.mock import patch, AsyncMock, MagicMock
 
-sys.path.append(os.path.abspath('docs/6. Exploring Python 3.12 Features'))
+sys.path.append(os.path.abspath('docs/6. Exploring New Python Versions Features'))
 import ex_6_1 as ex1
 import ex_6_2 as ex2
 import ex_6_3 as ex3
