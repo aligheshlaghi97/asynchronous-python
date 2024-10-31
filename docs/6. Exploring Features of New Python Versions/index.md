@@ -1,10 +1,10 @@
 ---
 layout: default
-title: "Chapter 6: Exploring New Python Versions Features"
+title: "Chapter 6: Exploring Features of New Python Versions"
 permalink: /chapter6/
 ---
 
-# Exploring New Python Versions Features
+# Exploring Features of New Python Versions
 ## Overview of new features and enhancements in Python 3.12
 As Geir Arne Hjelle says in 
 [his tutorial](https://realpython.com/python312-new-features/),
