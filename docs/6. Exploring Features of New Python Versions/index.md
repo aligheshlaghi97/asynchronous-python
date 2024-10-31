@@ -72,6 +72,7 @@ it takes 0.05 seconds with Python 3.12 versus 0.33 seconds with Python 3.10 in m
 
 This is also an example from `asyncio.Queue.shutdown` usage in python 3.13:
 ```python
+# ex_6_4
 {% include_relative ex_6_4.py %}
 ```
 Running example above will raise `asyncio.QueueShutDown` error.
