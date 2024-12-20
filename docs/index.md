@@ -8,15 +8,24 @@ permalink: /
 
 Welcome to the Async Python Playground repository! 🚀
 
-This repository serves as a comprehensive resource for learning about asynchronous programming in Python, with a focus on the asyncio module and the latest features introduced in Python 3.11, 3.12 and 3.13. Whether you're a beginner looking to dive into async programming or an experienced developer seeking to explore advanced techniques, this repository has something for everyone.
+This repository is a comprehensive guide to mastering asynchronous programming in Python,
+covering core concepts, practical tools, and advanced techniques. 
+From the fundamentals of asyncio to alternative libraries like AnyIO and Trio,
+as well as task scheduling solutions such as Celery and APScheduler,
+this repository provides a one-stop resource for exploring the async Python ecosystem.
+
+Whether you're a beginner eager to dive into async programming
+or an experienced developer looking to refine your skills and explore emerging patterns,
+this repository has you covered.
 
 ## Key Features:
 
-**Structured Content:** Explore a curated collection of code examples, tutorials, and explanations covering a wide range of async Python topics.<br />
-**Clear Documentation:** Each example is accompanied by detailed documentation, guiding you through the concepts, syntax, and best practices of async programming.<br />
-**Python latest versions Coverage:** Discover the newest capabilities of Python and how they enhance async programming in Python.<br />
-**Interactive Learning:** Experiment with the provided code examples and gain hands-on experience with async Python in action.<br />
-**Community Engagement:** Join a growing community of developers interested in async Python, contribute your own examples, and collaborate with others to explore async programming further.<br />
+**Structured Content:** Tutorials and examples covering a wide range of async Python topics.<br />
+**Clear Documentation:** Detailed explanations to help you understand concepts and best practices.<br />
+**Latest Python Features:** Highlights of async improvements in Python 3.11, 3.12, and 3.13.<br />
+**Hands-On Learning:** Try out code examples to build practical async skills.<br />
+**Collaborative Community:** Share ideas and contribute to the growing async Python ecosystem.<br />
+
 ## Table of Contents:
 
 1. * **Introduction to Asynchronous Programming**
@@ -56,3 +65,17 @@ This repository serves as a comprehensive resource for learning about asynchrono
 7.  * **Web Applications**
       - ASGI vs. WSGI: Understanding the differences and benefits
       - Building RESTful APIs with async Python: Introduction to Starlette microframework
+
+8. * **Introduction to AnyIO and Trio**
+      - What Are AnyIO and Trio?
+      - Getting Started with AnyIO
+      - Exploring Trio
+      - Integrating AnyIO and Trio into Existing Projects
+      - Best Practices and Advanced Concepts
+
+9. * **Task Scheduling and Queues: Celery, APScheduler, and Beyond**
+      - Introduction to Task Scheduling and Queues
+      - Getting Started with Celery
+      - Lightweight Scheduling with APScheduler
+      - Choosing Between Celery, APScheduler, and Alternatives
+      - Best Practices and Real-World Examples
