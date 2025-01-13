@@ -54,6 +54,17 @@ And now we have full control over tasks and this is how it will look like.
 `Trio`'s primary aim is to simplify the comprehension and enhance the performance of concurrency operations.
 It offers a more efficient GIL and higher-level APIs, resulting in code that is easier to understand and troubleshoot.
 
+Now let's see our first example from [trio's official document](https://trio.readthedocs.io/en/stable/) 
+and get familiar with it. 
+As you can see, there is a patent async function which uses nurseries to spawn two child tasks and run them.
+```python
+# ex_8_3
+{% include_relative ex_8_3.py %}
+```
+
+Let's see how `consumer-producer` is handled in `trio`, described in official document 
+[here](https://trio.readthedocs.io/en/stable/reference-core.html#using-channels-to-pass-values-between-tasks)
+Then we can compare it with `ex_5_5` which is equivalent consumer-producer in `asyncio`
 
 ## Getting Started with AnyIO
 
