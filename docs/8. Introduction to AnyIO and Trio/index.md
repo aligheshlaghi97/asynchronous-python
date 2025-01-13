@@ -37,7 +37,7 @@ An example of an orphaned task can be seen in the following case, where `task_b`
 ```
 This image illustrates what happens under the hood
 (from [here](https://belief-driven-design.com/looking-at-java-21-structured-concurrency-39a81/)):
-![img.png](img.png)
+![test1](https://github.com/user-attachments/assets/48215a3a-538f-4a0b-8143-34268958d794)
 
 And now imagine this example with `asyncio.TaskGroup` (which is similar to example_2_8).
 As you see, both `task_a` and `test_b` will finish and then the task-group context manager exits.
@@ -48,7 +48,7 @@ As you see, both `task_a` and `test_b` will finish and then the task-group conte
 ```
 
 And now we have full control over tasks and this is how it will look like.
-![img_1.png](img_1.png)
+![test2](https://github.com/user-attachments/assets/3d82ae86-3fc2-42e6-b342-94bfea9f342b)
 
 ## Exploring Trio
 `Trio`'s primary aim is to simplify the comprehension and enhance the performance of concurrency operations.
