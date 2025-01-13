@@ -24,16 +24,31 @@ making them attractive options for improving task efficiency.
 
 
 ## Structured Concurrency Design Pattern
-As Jan Plesnik says [here](https://applifting.io/blog/python-structured-concurrency),
-if we don't want orphaned tasks (which means a task which lost its reference),
-we need to be aware of structured concurrency.
-In Python3.11 we saw `asyncio.TaskGroup` earlier which helps us with it.
-In `Trio` there is `nurseries` which help us with it.
-As an example of orphaned tasks, you can imagine `task_b` in the following example. (example from Jan's article)
+As Jan Plesnik explains [here](https://applifting.io/blog/python-structured-concurrency),
+to avoid orphaned tasks—tasks that lose their reference—we need to embrace structured concurrency.
+In Python 3.11, the introduction of `asyncio.TaskGroup` provides a way to manage this effectively
+Similarly, Trio offers nurseries, which serve the same purpose.
+An example of an orphaned task can be seen in the following case, where `task_b` loses its reference.
+(Example from Jan's article.)
 
 ```python
+# ex_8_1
 {% include_relative ex_8_1.py %}
 ```
+This image illustrates what happens under the hood
+(from [here](https://belief-driven-design.com/looking-at-java-21-structured-concurrency-39a81/)):
+![img.png](img.png)
+
+And now imagine this example with `asyncio.TaskGroup` (which is similar to example_2_8).
+As you see, both `task_a` and `test_b` will finish and then the task-group context manager exits.
+
+```python
+# ex_8_2
+{% include_relative ex_8_2.py %}
+```
+
+And now we have full control over tasks and this is how it will look like.
+![img_1.png](img_1.png)
 
 ## Exploring Trio
 `Trio`'s primary aim is to simplify the comprehension and enhance the performance of concurrency operations.
