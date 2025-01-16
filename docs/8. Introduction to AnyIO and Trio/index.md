@@ -6,10 +6,10 @@ permalink: /chapter8/
 
 # Introduction to AnyIO and Trio
 ## What Are AnyIO and Trio?
-Let's imagine that our primary objective is achieving concurrency for I/O bound tasks. 
+Let's imagine that our primary objective is achieving concurrency for I/O bound tasks.
 While we have been exploring `asyncio` in Python to support this goal,
 additional tools such as `anyio` and `trio` offer valuable alternatives for enhancing I/O parallelism
-which leverage the benefits of the `Structured Concurrency` design pattern. 
+which leverage the benefits of the `Structured Concurrency` design pattern.
 Their appeal lies in their user-friendly nature, enhanced features, and reduced learning curve,
 making them attractive options for improving task efficiency.
 
@@ -54,17 +54,26 @@ And now we have full control over tasks and this is how it will look like.
 `Trio`'s primary aim is to simplify the comprehension and enhance the performance of concurrency operations.
 It offers a more efficient GIL and higher-level APIs, resulting in code that is easier to understand and troubleshoot.
 
-Now let's see our first example from [trio's official document](https://trio.readthedocs.io/en/stable/) 
-and get familiar with it. 
-As you can see, there is a patent async function which uses nurseries to spawn two child tasks and run them.
+Now let's see our first example from [trio's official document](https://trio.readthedocs.io/en/stable/)
+and get familiar with it.
+As you can see, there is a parent async function which uses nurseries to spawn two child tasks and run them.
 ```python
 # ex_8_3
 {% include_relative ex_8_3.py %}
 ```
 
-Let's see how `consumer-producer` is handled in `trio`, described in official document 
+A very interesting topic would be to see how `consumer-producer` is handled in `trio`, described in official document
 [here](https://trio.readthedocs.io/en/stable/reference-core.html#using-channels-to-pass-values-between-tasks)
-Then we can compare it with `ex_5_5` which is equivalent consumer-producer in `asyncio`
+and compare it with our `ex_5_5`, a consumer-producer variant in `asyncio`.
+`open_memory_channel` is an API used to create queue and manage consumer-producer in `trio`.
+Let's rewrite our `ex_5_5` in `trio` syntax:
+```python
+# ex_8_4
+{% include_relative ex_8_4.py %}
+```
+By utilizing `open_memory_channel`, we get two channels initiated and then call consumer/producer with their respective channels.
+Also, the `consumer` and `producer` async functions contain a context manager to signal the completion of the production/consumption processes.
+
 
 ## Getting Started with AnyIO
 
