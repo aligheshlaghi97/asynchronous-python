@@ -76,8 +76,20 @@ Also, the `consumer` and `producer` async functions contain a context manager to
 
 
 ## Getting Started with AnyIO
+AnyIO is a handy library that makes async programming easier by letting you write code that works with both `asyncio` and `Trio`.
+It hides the differences between these frameworks, so your code runs smoothly no matter which event loop you use.
 
 
+The starter example from [anyio official document](https://anyio.readthedocs.io/en/stable/tasks.html#creating-and-managing-tasks) is provided here:
+```python
+# ex_8_5
+{% include_relative ex_8_5.py %}
+```
+
+It runs on top of `asyncio` and if you want to run it on top of `Trio` just do this in run section:
+```python
+run(main, backend='trio')
+```
 
 
 ## Integrating AnyIO and Trio into Existing Projects
