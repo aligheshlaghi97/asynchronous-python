@@ -80,7 +80,7 @@ AnyIO is a handy library that makes async programming easier by letting you writ
 It hides the differences between these frameworks, so your code runs smoothly no matter which event loop you use.
 
 
-The starter example from [anyio official document](https://anyio.readthedocs.io/en/stable/tasks.html#creating-and-managing-tasks) is provided here:
+The starter example from [AnyIO official document](https://anyio.readthedocs.io/en/stable/tasks.html#creating-and-managing-tasks) is provided here:
 ```python
 # ex_8_5
 {% include_relative ex_8_5.py %}
@@ -92,7 +92,7 @@ run(main, backend='trio')
 ```
 
 
-And let's see a typical `consumer-producer` pattern in `anyio` which  looks like `Trio`'s example:
+And let's see a typical `consumer-producer` pattern in `AnyIO` which  looks like `Trio`'s example:
 ```python
 # ex_8_6
 {% include_relative ex_8_6.py %}
@@ -106,4 +106,13 @@ One example would be to read the file names in the current path.
 {% include_relative ex_8_7.py %}
 ```
 
-## Integrating AnyIO and Trio into Existing Projects
+## When to Choose AnyIO or Trio for Your Projects
+Choosing between AnyIO and Trio often depends on the goals of your project:
+
+ - **AnyIO** is perfect when you need a framework-agnostic approach,
+ letting you write code compatible with `asyncio` and `Trio`.
+ - **Trio** shines when you want a structured concurrency model
+ with a focus on reliability and simplicity.
+
+If you're already familiar with `asyncio`, `AnyIO` offers a smooth transition to explore `Trio`'s advantages.
+If you're starting fresh, `Trio`’s user-friendly design makes it a great first choice.

@@ -71,7 +71,7 @@ this repository has you covered.
       - Structured Concurrency Design Pattern
       - Exploring Trio
       - Getting Started with AnyIO
-      - Integrating AnyIO and Trio into Existing Projects
+      - When to Choose AnyIO or Trio for Your Projects
 
 9. * **Task Scheduling and Queues: Celery, APScheduler, and Beyond**
       - Introduction to Task Scheduling and Queues

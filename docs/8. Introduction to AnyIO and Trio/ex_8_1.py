@@ -2,7 +2,7 @@ import asyncio
 
 
 async def coro_a():
-    await asyncio.sleep(2)
+    await asyncio.sleep(0.2)
 
 
 async def coro_b():
@@ -14,3 +14,6 @@ async def fn():
     task_b = asyncio.create_task(coro_b())
 
     return await task_a
+
+
+asyncio.run(fn())
