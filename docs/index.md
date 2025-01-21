@@ -72,7 +72,6 @@ this repository has you covered.
       - Exploring Trio
       - Getting Started with AnyIO
       - Integrating AnyIO and Trio into Existing Projects
-      - Best Practices and Advanced Concepts
 
 9. * **Task Scheduling and Queues: Celery, APScheduler, and Beyond**
       - Introduction to Task Scheduling and Queues

@@ -92,10 +92,18 @@ run(main, backend='trio')
 ```
 
 
+And let's see a typical `consumer-producer` pattern in `anyio` which  looks like `Trio`'s example:
+```python
+# ex_8_6
+{% include_relative ex_8_6.py %}
+```
+
+If you want to do some blocking task, `anyio.to_thread` API seem do to a good job.
+One example would be to read the file names in the current path.
+[from this article](https://lewoudar.medium.com/anyio-all-you-need-for-async-programming-stuff-4cd084d0f6bd)
+```python
+# ex_8_7
+{% include_relative ex_8_7.py %}
+```
+
 ## Integrating AnyIO and Trio into Existing Projects
-
-
-
-
-
-## Best Practices and Advanced Concepts
