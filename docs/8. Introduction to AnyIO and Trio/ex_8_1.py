@@ -2,11 +2,11 @@ import asyncio
 
 
 async def coro_a():
-    asyncio.sleep(2)
+    await asyncio.sleep(2)
 
 
-async def coro_a():
-    asyncio.sleep(0.1)
+async def coro_b():
+    await asyncio.sleep(0.1)
 
 
 async def fn():

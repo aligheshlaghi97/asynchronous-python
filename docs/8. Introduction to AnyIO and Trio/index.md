@@ -26,7 +26,7 @@ making them attractive options for improving task efficiency.
 ## Structured Concurrency Design Pattern
 As Jan Plesnik explains [here](https://applifting.io/blog/python-structured-concurrency),
 to avoid orphaned tasks—tasks that lose their reference—we need to embrace structured concurrency.
-In Python 3.11, the introduction of `asyncio.TaskGroup` provides a way to manage this effectively
+In Python 3.11, the introduction of `asyncio.TaskGroup` provides a way to manage this effectively.
 Similarly, Trio offers nurseries, which serve the same purpose.
 An example of an orphaned task can be seen in the following case, where `task_b` loses its reference.
 (Example from Jan's article.)
