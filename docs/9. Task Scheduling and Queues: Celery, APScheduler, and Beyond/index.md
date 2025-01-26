@@ -17,8 +17,31 @@ In this section, we’ll explore these tools and learn how to design scalable, a
 
 ## Getting Started with Celery
 
+First install `celery` on your system with pip.
+Then you have to installed `RabbitMQ` on your system and make sure it is enabled or setup using docker.
 
+Then create these python files. In first one we initiate backend and broker of celery.
+```python
+# ex_9_1
+{% include_relative ex_9_1.py %}
+```
 
+In this one we run and get the celery task's result and check if it ready or not.
+```python
+# ex_9_2
+{% include_relative ex_9_2.py %}
+```
+
+In the third file, we run and sleep to get the celery task's result and check if it ready or not.
+```python
+# ex_9_3
+{% include_relative ex_9_3.py %}
+```
+
+After all change directory to chapter9 and run this command and then run `ex_9_2.py` and `ex_9_3.py` files:
+```shell
+celery -A ex_9_1 worker --loglevel=INFO
+```
 
 
 ## Lightweight Scheduling with APScheduler
