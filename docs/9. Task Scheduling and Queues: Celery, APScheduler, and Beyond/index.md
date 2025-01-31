@@ -9,7 +9,8 @@ permalink: /chapter9/
 
 Task scheduling and message queues are essential for handling long-running tasks,
 periodic jobs, and inter-component communication in modern applications.
-They help improve scalability, resilience, and efficiency by decoupling workflows and managing workloads asynchronously.
+They help improve scalability, resilience, and efficiency
+by decoupling workflows and managing workloads asynchronously.
 
 Libraries like `Celery` and `APScheduler` are popular tools for implementing task scheduling and queuing in Python.
 They allow developers to offload tasks, schedule recurring jobs, and handle retries seamlessly.
@@ -17,32 +18,46 @@ In this section, we’ll explore these tools and learn how to design scalable, a
 
 ## Getting Started with Celery
 
-First install `celery` on your system with pip.
-Then you have to installed `RabbitMQ` on your system and make sure it is enabled or setup using docker.
+First install `Celery` on your system with `pip`.
+Then you have to install `RabbitMQ` on your system or setup using docker and make sure it is enabled.
+You can use Celery's official documentation hints like
+[first steps with Celery](https://docs.celeryq.dev/en/latest/getting-started/first-steps-with-celery.html#rabbitmq)
+or [backends and brokers-RabbitMQ](https://docs.celeryq.dev/en/latest/getting-started/backends-and-brokers/rabbitmq.html)
+to setup and use celery and RabbitMQ together.
 
-Then create these python files. In first one we initiate backend and broker of celery.
+Then we create three python files.
+In first one, we initiate backend and broker of celery.
 ```python
 # ex_9_1
 {% include_relative ex_9_1.py %}
 ```
 
-In this one we run and get the celery task's result and check if it ready or not.
+In the second one, `ex_9_2`, we put the `add(4, 4)` inside a celery queue to run.
+Then get its result and check if it ready or not.
+
 ```python
 # ex_9_2
 {% include_relative ex_9_2.py %}
 ```
 
-In the third file, we run and sleep to get the celery task's result and check if it ready or not.
+In the third file, `ex_9_3`, we put the task inside queue (using `delay` function)
+and then sleep to get the celery task's result and check if it ready or not.
 ```python
 # ex_9_3
 {% include_relative ex_9_3.py %}
 ```
 
-After all change directory to chapter9 and run this command and then run `ex_9_2.py` and `ex_9_3.py` files:
+In order to run above pieces of code, go to chapter9's directory
+and run the command below:
 ```shell
 celery -A ex_9_1 worker --loglevel=INFO
 ```
 
+And then run `ex_9_2.py` and `ex_9_3.py` modules separately (in other shell):
+```shell
+python ex_9_2.py
+python ex_9_3.py
+```
 
 ## Lightweight Scheduling with APScheduler
 
