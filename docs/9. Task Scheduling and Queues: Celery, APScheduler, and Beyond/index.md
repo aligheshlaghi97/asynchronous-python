@@ -66,7 +66,7 @@ If you want to run the task after `t` seconds of non-blocking delay, use `apply_
 {% include_relative ex_9_4.py %}
 ```
 
-### **Some important points on running Celery backend**
+### **Some important points on running Celery worker**
  - 1. The following command determines the number of workers that can be forked/spawned:
  ```shell
  ulimit -n
@@ -75,16 +75,17 @@ If you want to run the task after `t` seconds of non-blocking delay, use `apply_
  [file descriptors](https://stackoverflow.com/questions/5256599/what-are-file-descriptors-explained-in-simple-terms)
  that can be open at any point of time.
 
- - 2. By running Celery's backend using `celery -A ex_9_1 worker`,
+ - 2. By running Celery's worker using `celery -A ex_9_1 worker`,
  there are `n` number of processes forked/spawned by default, where `n` is the number of CPU cores.
  You can determine this by running `pgrep celery` command (which returns their PIDs).
 
- - 3. There are two important inputs for running celery backend, `concurrency` and `autoscale`:
- `concurrency` is used to determine the number of processes to be forked/spawned by celery backend
+ - 3. There are two important inputs for running celery worker, `concurrency` and `autoscale`:
+ `concurrency` is used to determine the number of processes to be forked/spawned by celery worker
  (which has an upper-bound of maximum number of file descriptors under the hood).
- `autoscale` limits the number of forked/spawned processes between two numbers based on incomming load.
+ `autoscale` limits the number of forked/spawned processes between two numbers
+ and adjust that number automatically based on the incoming load.
 
-It's notable that I have inspired and borrowed so many things from
+It's also notable that I've inspired and borrowed so much from
 [Daksh Gupta's tutorial on Celery](https://www.youtube.com/watch?v=v-Snbz3WmJU).
 
 ## Lightweight Scheduling with APScheduler
