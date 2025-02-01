@@ -1,10 +1,10 @@
 ---
 layout: default
-title: "Chapter 9: Task Scheduling and Queues: Celery, APScheduler, and Beyond"
+title: "Chapter 9: Task Scheduling and Queues: Celery and APScheduler"
 permalink: /chapter9/
 ---
 
-# Task Scheduling and Queues: Celery, APScheduler, and Beyond
+# Task Scheduling and Queues: Celery and APScheduler
 ## Introduction to Task Scheduling and Queues
 
 Task scheduling and message queues are essential for handling long-running tasks,
@@ -95,9 +95,3 @@ It's also notable that I've inspired and borrowed so much from
 
 
 ## Choosing Between Celery, APScheduler, and Alternatives
-
-
-
-
-
-## Best Practices and Real-World Examples
