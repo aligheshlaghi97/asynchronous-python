@@ -40,7 +40,8 @@ Then get its result and check if it ready or not.
 {% include_relative ex_9_2.py %}
 ```
 
-In the third file, `ex_9_3`, we put the task inside queue (using `delay` function)
+In the third file, `ex_9_3`, we put the task inside queue, using `delay` function
+(`apply_async` can be used too)
 and then sleep to get the celery task's result and check if it ready or not.
 ```python
 # ex_9_3
@@ -57,6 +58,12 @@ And then run `ex_9_2.py` and `ex_9_3.py` modules separately (in other shell):
 ```shell
 python ex_9_2.py
 python ex_9_3.py
+```
+
+If you want to run the task after `t` seconds of delay, use `apply_async` this way:
+```
+# ex_9_4
+{% include_relative ex_9_4.py %}
 ```
 
 ## Lightweight Scheduling with APScheduler
