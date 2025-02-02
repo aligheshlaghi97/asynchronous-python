@@ -61,7 +61,7 @@ python ex_9_3.py
 ```
 
 If you want to run the task after `t` seconds of non-blocking delay, use `apply_async` this way:
-```
+```python
 # ex_9_4
 {% include_relative ex_9_4.py %}
 ```
@@ -102,8 +102,23 @@ APScheduler has four compnents:
  - 3. Executor: Handles running of the jobs, using thread or process pool.
  - 4. Scheduler: Binds all things together and helps with configuring the job stores and executors.
 
-[This link](https://rocketry.readthedocs.io/en/stable/rocketry_vs_alternatives.html) is a very useful
-comparison between different scheduling tools provided in Rocketry document that worth paying attention.
-
+Now let's see an example of a simple periodic task using APScheduler from
+[Keshav Manglore](https://medium.com/@keshavmanglore/advanced-python-scheduler-scheduling-tasks-with-ap-scheduler-in-python-8c7998a4f116)
+which runs every five seconds:
+```python
+# ex_9_5
+{% include_relative ex_9_5.py %}
+```
 
 ## Choosing Between Celery, APScheduler, and Alternatives
+
+[This link](https://rocketry.readthedocs.io/en/stable/rocketry_vs_alternatives.html) provides a very
+useful comparison between different scheduling tools in Rocketry document that worth paying attention.
+
+### When to use APScheduler?
+ - If you need simple, in-memory task scheduling inside an async app.
+ - If your tasks are lightweight and don’t require distributed execution.
+
+### When to use Celery?
+ - If you need reliable background task execution with retries.
+ - If you need distributed task processing with multiple workers.
