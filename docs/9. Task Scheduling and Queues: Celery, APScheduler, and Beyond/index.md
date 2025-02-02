@@ -89,9 +89,21 @@ It's also notable that I've inspired and borrowed so much from
 [Daksh Gupta's tutorial on Celery](https://www.youtube.com/watch?v=v-Snbz3WmJU).
 
 ## Lightweight Scheduling with APScheduler
+APScheduler is a relatively simple scheduler library for Python.
+It provides Cron-style scheduling and some interval based scheduling.
 
+As the [APScheduler official document](https://apscheduler.readthedocs.io/en/3.x/) states,
+APScheduler has four compnents:
+ - 1. Trigger: Used to determine when to run the task and has three types:
+    - a. Date
+    - b. Interval
+    - b. Cron
+ - 2. Job Store: Saves the scheduled jobs in memory or database.
+ - 3. Executor: Handles running of the jobs, using thread or process pool.
+ - 4. Scheduler: Binds all things together and helps with configuring the job stores and executors.
 
-
+[This link](https://rocketry.readthedocs.io/en/stable/rocketry_vs_alternatives.html) is a very useful
+comparison between different scheduling tools provided in Rocketry document that worth paying attention.
 
 
 ## Choosing Between Celery, APScheduler, and Alternatives
