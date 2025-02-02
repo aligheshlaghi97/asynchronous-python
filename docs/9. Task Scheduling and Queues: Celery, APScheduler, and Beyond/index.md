@@ -67,7 +67,7 @@ If you want to run the task after `t` seconds of non-blocking delay, use `apply_
 ```
 
 ### **Some important points on running Celery worker**
- - 1. The following command determines the number of workers that can be forked/spawned:
+ 1. The following command determines the number of workers that can be forked/spawned:
  ```shell
  ulimit -n
  ```
@@ -75,11 +75,11 @@ If you want to run the task after `t` seconds of non-blocking delay, use `apply_
  [file descriptors](https://stackoverflow.com/questions/5256599/what-are-file-descriptors-explained-in-simple-terms)
  that can be open at any point of time.
 
- - 2. By running Celery's worker using `celery -A ex_9_1 worker`,
+ 2. By running Celery's worker using `celery -A ex_9_1 worker`,
  there are `n` number of processes forked/spawned by default, where `n` is the number of CPU cores.
  You can determine this by running `pgrep celery` command (which returns their PIDs).
 
- - 3. There are two important inputs for running celery worker, `concurrency` and `autoscale`:
+ 3. There are two important inputs for running celery worker, `concurrency` and `autoscale`:
  `concurrency` is used to determine the number of processes to be forked/spawned by celery worker
  (which has an upper-bound of maximum number of file descriptors under the hood).
  `autoscale` limits the number of forked/spawned processes between two numbers
@@ -94,13 +94,13 @@ It provides Cron-style scheduling and some interval based scheduling.
 
 As the [APScheduler official document](https://apscheduler.readthedocs.io/en/3.x/) states,
 APScheduler has four compnents:
- - 1. Trigger: Used to determine when to run the task and has three types:
+1. Trigger: Used to determine when to run the task and has three types:
     - a. Date
     - b. Interval
     - b. Cron
- - 2. Job Store: Saves the scheduled jobs in memory or database.
- - 3. Executor: Handles running of the jobs, using thread or process pool.
- - 4. Scheduler: Binds all things together and helps with configuring the job stores and executors.
+2. Job Store: Saves the scheduled jobs in memory or database.
+3. Executor: Handles running of the jobs, using thread or process pool.
+4. Scheduler: Binds all things together and helps with configuring the job stores and executors.
 
 Now let's see an example of a simple periodic task using APScheduler from
 [Keshav Manglore](https://medium.com/@keshavmanglore/advanced-python-scheduler-scheduling-tasks-with-ap-scheduler-in-python-8c7998a4f116)
