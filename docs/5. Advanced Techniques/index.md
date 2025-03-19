@@ -72,6 +72,12 @@ Let's take a look at
 As Cristian Prieto says, in this example, `asyncio.Queue` is our way to communicate between the producer of items
 and its consumer, it will await until the queue has an item to give us.
 
+### Channels vs Queues
+The term channel is used in languages like Golang and Kotlin. Channel is not exactly the same as queue.
+In short, a queue is a storage mechanism, while a channel is a communication mechanism (which may internally use a queue).
+Actually, a queue is a data structure that stores elements in a first-in, first-out (FIFO) order,
+while a channel is a communication mechanism that allows asynchronous data transfer between different parts of a program.
+
 ## asyncio Future
 [Future objects are used to bridge low-level callback-based code with high-level async/await code.
 ](https://docs.python.org/3/library/asyncio-future.html)
