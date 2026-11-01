@@ -39,15 +39,15 @@ This image illustrates what happens under the hood
 (from [here](https://belief-driven-design.com/looking-at-java-21-structured-concurrency-39a81/)):
 ![test1](https://github.com/user-attachments/assets/48215a3a-538f-4a0b-8143-34268958d794)
 
-And now imagine this example with `asyncio.TaskGroup` (which is similar to example_2_8).
-As you see, both `task_a` and `test_b` will finish and then the task-group context manager exits.
+And now imagine this example with `asyncio.TaskGroup` (which is similar to ex_2_7).
+As you see, both `task_a` and `task_b` will finish and then the task-group context manager exits.
 
 ```python
 # ex_8_2
 {% include_relative ex_8_2.py %}
 ```
 
-And now we have full control over tasks and this is how it will look like.
+And now we have full control over tasks and this is what it will look like.
 ![test2](https://github.com/user-attachments/assets/3d82ae86-3fc2-42e6-b342-94bfea9f342b)
 
 ## Exploring Trio
@@ -65,7 +65,7 @@ As you can see, there is a parent async function which uses nurseries to spawn t
 A very interesting topic would be to see how `consumer-producer` is handled in `trio`, described in official document
 [here](https://trio.readthedocs.io/en/stable/reference-core.html#using-channels-to-pass-values-between-tasks)
 and compare it with our `ex_5_5`, a consumer-producer variant in `asyncio`.
-`open_memory_channel` is an API used to create queue and manage consumer-producer in `trio`.
+`open_memory_channel` is an API used to create a queue and manage consumer-producer in `trio`.
 Let's rewrite our `ex_5_5` in `trio` syntax:
 ```python
 # ex_8_4
@@ -92,13 +92,13 @@ run(main, backend='trio')
 ```
 
 
-And let's see a typical `consumer-producer` pattern in `AnyIO` which  looks like `Trio`'s example:
+And let's see a typical `consumer-producer` pattern in `AnyIO` which looks like `Trio`'s example:
 ```python
 # ex_8_6
 {% include_relative ex_8_6.py %}
 ```
 
-If you want to do some blocking task, `anyio.to_thread` API seem do to a good job.
+If you want to do some blocking task, the `anyio.to_thread` API seems to do a good job.
 One example would be to read the file names in the current path.
 [from this article](https://lewoudar.medium.com/anyio-all-you-need-for-async-programming-stuff-4cd084d0f6bd)
 ```python

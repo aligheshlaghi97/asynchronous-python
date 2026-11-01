@@ -20,7 +20,7 @@ We'll mainly stick to the easier high-level functions to understand asyncio bett
 But later on, we might explore some trickier low-level ones.
 
 ## Runners:
-we can use runners to a coroutine (as a reminder, sth possible to await) as we saw previously.
+we can use runners to run a coroutine (as a reminder, something possible to await) as we saw previously.
 We can run `asyncio.sleep` function this way in `async_sleep_for_one_second` coroutine:
 
 ```python
@@ -33,8 +33,8 @@ We can use `asyncio.run` using context manager to run the above coroutine:
 # ex_2_2
 {% include_relative ex_2_2.py %}
 ```
-Notice that we will be using python 3.12 and above (for most of the examples) to run our examples through this tutorial.
-(e.g. python3.10 will through an error for ex_2_2)
+Notice that we will be using Python 3.12 and above (for most of the examples) to run our examples through this tutorial.
+(e.g. Python 3.10 will throw an error for ex_2_2)
 
 * Note: To grasp the concept of a **context manager** and its functionality with the `with` syntax, 
 our goal is to have complete control over our operations. 
@@ -51,7 +51,7 @@ just by calling a coroutine (without awaiting it), nothing happens:
 ```
 <br>
 
-Now let's create some tasks and await it. We'll see it works just fine.
+Now let's create some tasks and await them. We'll see it works just fine.
 
 ```python
 # ex_2_4
@@ -59,7 +59,7 @@ Now let's create some tasks and await it. We'll see it works just fine.
 ```
 <br>
 
-By creating task and awaiting them, we can run multiple tasks concurrently, as `task1` and `task2` in the following example:
+By creating tasks and awaiting them, we can run multiple tasks concurrently, as `task1` and `task2` in the following example:
 ```python
 # ex_2_5
 {% include_relative ex_2_5.py %}
@@ -70,7 +70,7 @@ By creating task and awaiting them, we can run multiple tasks concurrently, as `
 
 
 In the following example, we get the event loop, create a task inside that loop and await it to run.
-The result is the same with ex_2_4
+The result is the same as ex_2_4
 ```python
 # ex_2_6
 {% include_relative ex_2_6.py %}

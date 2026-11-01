@@ -38,8 +38,8 @@ We can use such a syntax to use locks:
 # ex_4_2
 {% include_relative ex_4_2.py %}
 ```
-As provided in ex_4_2, a lock created inside `main` and passed to `task` coroutine. 
-For fast response, 0.01s delay decreased to 0.
+As provided in ex_4_2, a lock is created inside `main` and passed to the `task` coroutine. 
+For a fast response, the 0.01s delay is decreased to 0.
 
 ### Semaphores
 To limit access to some resources, semaphores are used. 
@@ -49,12 +49,12 @@ I'll bring the example from [this article](https://medium.com/@kalmlake/async-io
 # ex_4_3
 {% include_relative ex_4_3.py %}
 ```
-Running above example, we want to access a limited resouce for 4 time. 
+Running the above example, we want to access a limited resource 4 times. 
 We see that only two acquisitions of limited resource happens at first. 
 Then it will sleep for 1s and after releasing the resources the remaining two acquisitions happen.
 
 ### Barriers
-[As official documents says:](https://docs.python.org/3/library/asyncio-sync.html#asyncio.Barrier) 
+[As the official documentation says:](https://docs.python.org/3/library/asyncio-sync.html#asyncio.Barrier) 
 A barrier is a simple synchronization primitive that allows to block until parties number of tasks are waiting on it.
 Tasks can wait on the `wait()` method and would be blocked until the specified number of tasks end up waiting on `wait()`
 

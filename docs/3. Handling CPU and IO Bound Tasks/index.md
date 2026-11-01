@@ -34,7 +34,7 @@ Here is example 3_1 to get started with HTTPX:
 {% include_relative ex_3_1.py %}
 ```
 
-Now lets create some tasks of async requesting to run concurrently, as we learnt in previous section:
+Now let's create some tasks of async requesting to run concurrently, as we learnt in previous section:
 ```python
 # ex_3_2
 {% include_relative ex_3_2.py %}
@@ -74,7 +74,7 @@ Running the code in the next example, we see the speed double.
 {% include_relative ex_3_5.py %}
 ```
 
-##Strategies for balancing CPU and I/O-bound workloads in async Python applications
+## Strategies for balancing CPU and I/O-bound workloads in async Python applications
 This is a good article talking about this subject:
 [How to Boost Your App Performance with Asyncio](https://blog.cellenza.com/en/software-development/how-to-boost-your-apps-performance-with-asyncio-a-practical-guide-for-python-developers/)
 
@@ -101,7 +101,7 @@ The `fork` method copies the parent process's memory, including variables, and w
 [up to 20 times faster than `spawn`](https://superfastpython.com/fork-faster-than-spawn/),
 but it can be buggy, especially on macOS. Also, note that fork is not supported on Windows.
 
-**Copy-on-write** here mean that fork uses parent memory when reading but creates a copy of that memory when it needs to modify.
+**Copy-on-write** here means that fork uses parent memory when reading but creates a copy of that memory when it needs to modify.
 
 To use `fork`, simply call `multiprocessing.set_start_method('fork')` during initialization.
 
@@ -112,4 +112,3 @@ This method is slower but avoids the potential pitfalls of shared memory between
 This is the default method to create a child process on **Windows** and **macOS**.
 
 To use `spawn`, simply call `multiprocessing.set_start_method('spawn')` during initialization.
-This is the default method to create a child process on Windows and MacOS.

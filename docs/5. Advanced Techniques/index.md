@@ -22,14 +22,14 @@ Otherwise, if `task1.exception()` is called before `shorter_task` raises an exce
 it will result in an error: `asyncio.exceptions.InvalidStateError: Exception is not set`.
 
 Now let's create our own exception handler and utilize it with previous ex_5_1. 
-In order to do it, we've to grab event loop and set the exception handler to it.
+In order to do it, we have to grab the event loop and set the exception handler to it.
 ```python
 # ex_5_2
 {% include_relative ex_5_2.py %}
 ```
 <br>
 
-Now let's take a look at an example of canceling a task and catching tbe error inspired by
+Now let's take a look at an example of canceling a task and catching the error inspired by
 [this example](https://stackoverflow.com/questions/56052748/python-asyncio-task-cancellation).
 ```python
 # ex_5_3
@@ -60,7 +60,7 @@ Based on that, we can conclude this chain of coroutines to run: <br>
 ## asyncio Queue and consumer-producer workflows
 A queue is a first-in, first-out (FIFO) data structure with put and get functionalities. 
 This means that data can be added (put) to the queue and retrieved (get) in the order it was added, 
-ensuring that earlier data is accessed first. In Python, the `collections.deque` class (syncornized) and `queue.Queue` (parallel) class provide this functionality. 
+ensuring that earlier data is accessed first. In Python, the `collections.deque` class (synchronized) and `queue.Queue` (parallel) class provide this functionality. 
 Additionally, for asynchronous programming within coroutines, Python offers the `asyncio.Queue` API.
 
 Let's take a look at 

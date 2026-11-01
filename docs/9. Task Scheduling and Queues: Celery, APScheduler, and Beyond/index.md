@@ -19,11 +19,11 @@ In this section, we’ll explore these tools and learn how to design scalable, a
 ## Getting Started with Celery
 
 First install `Celery` on your system with `pip`.
-Then you have to install `RabbitMQ` on your system or setup using docker and make sure it is enabled.
+Then you have to install `RabbitMQ` on your system or set it up using docker and make sure it is enabled.
 You can use Celery's official documentation hints like
 [first steps with Celery](https://docs.celeryq.dev/en/latest/getting-started/first-steps-with-celery.html#rabbitmq)
 or [backends and brokers-RabbitMQ](https://docs.celeryq.dev/en/latest/getting-started/backends-and-brokers/rabbitmq.html)
-to setup and use celery and RabbitMQ together.
+to set up and use celery and RabbitMQ together.
 
 Then we create three python files.
 In first one, we initiate backend and broker of celery.
@@ -33,7 +33,7 @@ In first one, we initiate backend and broker of celery.
 ```
 
 In the second one, `ex_9_2`, we put the `add(4, 4)` inside a celery queue to run.
-Then get its result and check if it ready or not.
+Then get its result and check if it is ready or not.
 
 ```python
 # ex_9_2
@@ -42,7 +42,7 @@ Then get its result and check if it ready or not.
 
 In the third file, `ex_9_3`, we put the task inside queue, using `delay` function
 (`apply_async` can be used too)
-and then sleep to get the celery task's result and check if it ready or not.
+and then sleep to get the celery task's result and check if it is ready or not.
 ```python
 # ex_9_3
 {% include_relative ex_9_3.py %}
@@ -54,7 +54,7 @@ and run the command below:
 celery -A ex_9_1 worker --loglevel=INFO
 ```
 
-And then run `ex_9_2.py` and `ex_9_3.py` modules separately (in other shell):
+And then run `ex_9_2.py` and `ex_9_3.py` modules separately (in another shell):
 ```shell
 python ex_9_2.py
 python ex_9_3.py
@@ -83,7 +83,7 @@ If you want to run the task after `t` seconds of non-blocking delay, use `apply_
  `concurrency` is used to determine the number of processes to be forked/spawned by celery worker
  (which has an upper-bound of maximum number of file descriptors under the hood).
  `autoscale` limits the number of forked/spawned processes between two numbers
- and adjust that number automatically based on the incoming load.
+ and adjusts that number automatically based on the incoming load.
 
 It's also notable that I've inspired and borrowed so much from
 [Daksh Gupta's tutorial on Celery](https://www.youtube.com/watch?v=v-Snbz3WmJU).
@@ -93,11 +93,11 @@ APScheduler is a relatively simple scheduler library for Python.
 It provides Cron-style scheduling and some interval based scheduling.
 
 As the [APScheduler official document](https://apscheduler.readthedocs.io/en/3.x/) states,
-APScheduler has four compnents:
+APScheduler has four components:
 1. Trigger: Used to determine when to run the task and has three types:
     - a. Date
     - b. Interval
-    - b. Cron
+    - c. Cron
 2. Job Store: Saves the scheduled jobs in memory or database.
 3. Executor: Handles running of the jobs, using thread or process pool.
 4. Scheduler: Binds all things together and helps with configuring the job stores and executors.
@@ -113,7 +113,7 @@ which runs every five seconds:
 ## Choosing Between Celery, APScheduler, and Alternatives
 
 [This link](https://rocketry.readthedocs.io/en/stable/rocketry_vs_alternatives.html) provides a very
-useful comparison between different scheduling tools in Rocketry document that worth paying attention.
+useful comparison between different scheduling tools in the Rocketry documentation that is worth paying attention to.
 
 ### When to use APScheduler?
  - If you need simple, in-memory task scheduling inside an async app.
