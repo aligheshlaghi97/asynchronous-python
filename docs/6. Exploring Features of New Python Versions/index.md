@@ -41,9 +41,9 @@ If `loop=None`, then it calls `get_running_loop()` to get the current event loop
 ## Practical examples demonstrating the use of newer Python versions features in async programming
 Let's start with eager_task_factory as something quite useful in asyncio world.
 As [this pull request](https://github.com/python/cpython/pull/104140) (and its corresponding issue) demonstrates, 
-using `asyncio.eager_task_factory` can speed up some async-heavy workloads to run up to 4-6 times.
+using `asyncio.eager_task_factory` can speed up some async-heavy workloads. That pull request reported gains of up to 4-6 times for some of those cases.
 
-Just take a look at ex_6_1, which runs nearly 6 times faster than ex_6_2, however the same thing happens in both.
+Just take a look at ex_6_1, which runs faster than ex_6_2, however the same thing happens in both.
 The idea is that we create a light coroutine named `light_coro` (in which we just pass and don't do anything) 
 and call it one million times. We use `eager_task_factory` and `TaskGroup` in first example (ex_6_1)
 but use `gather` without `eager_task_factory` in the second one (ex_6_2).
