@@ -19,7 +19,7 @@ Threads are the smallest units capable of independent processing, sharing memory
 
 ### Concurrency vs Parallelism
 Concurrency involves executing various tasks by alternating between them rapidly through time slicing, whereas parallelism entails executing different tasks simultaneously. <br>
-[The image says that all](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*6BoKUYL2j9SHZV8uY4T_gg.png) <br>
+[The image says it all](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*6BoKUYL2j9SHZV8uY4T_gg.png) <br>
 ![Screenshot from 2024-05-04 20-43-33](https://github.com/aligheshlaghi97/asynchronous-python/assets/121802083/ee6d54da-d706-446d-b692-5429f02fa47e)
 
 
@@ -31,7 +31,7 @@ However use of a global interpreter lock in a language effectively limits the am
 ## Event loops and coroutines
 ### Event loops
 The [event loop](https://docs.python.org/3/library/asyncio-eventloop.html) is the core of every asyncio application. Event loops run asynchronous tasks and callbacks, perform network IO operations, and run subprocesses.
-[Here we see here how it works](https://gist.github.com/kassane/f2330ef44b070f4a5fa9d59c770f68e9) 
+[Here we see how it works](https://gist.github.com/kassane/f2330ef44b070f4a5fa9d59c770f68e9) 
 ![Screenshot from 2024-05-04 21-47-21](https://github.com/aligheshlaghi97/asynchronous-python/assets/121802083/ad98b45c-a159-4ece-b82d-39a2ca78528c)
 
 ### coroutines

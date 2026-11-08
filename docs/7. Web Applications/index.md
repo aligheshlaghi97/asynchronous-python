@@ -9,7 +9,7 @@ permalink: /chapter7/
 ### WSGI and Gunicorn
 WSGI stands for web server gateway interface. 
 As the [official documentation of WSGI](https://peps.python.org/pep-3333/) indicates,
-it has created standard interface between web servers and python applications (or frameworks).
+it has created a standard interface between web servers and Python applications (or frameworks).
 By [web server](https://en.wikipedia.org/wiki/Web_server), 
 we mean software and its underlying hardware that accepts requests via HTTP/HTTPS protocol, e.g. Nginx and Apache.
 
@@ -33,13 +33,13 @@ is an important parameter in gunicorn, which is the number of worker processes f
 
 [`worker_class`](https://docs.gunicorn.org/en/latest/settings.html#worker-class) 
 parameter determines different modes of workers, which is `sync` by default.
-There are other modes e.g. `gevent` and `eventlet` are  asynchronous workers.
+There are other modes, e.g. `gevent` and `eventlet`, which are asynchronous workers.
 
-Moreover, you've to consider that Gunicorn only supports HTTP/1.1.
+Moreover, you have to consider that Gunicorn only supports HTTP/1.1.
 
 ### ASGI and Uvicorn
 [ASGI](https://asgi.readthedocs.io/en/latest/) (Asynchronous Server Gateway Interface) is a spiritual successor to WSGI,
-intended to provide a standard interface between async-capable Python applications and web server.
+intended to provide a standard interface between async-capable Python applications and a web server.
 It also supports HTTP/1.1, HTTP/2 and websocket connection.
 
 [Uvicorn](https://www.uvicorn.org/) is an ASGI web server implementation for Python.
