@@ -13,7 +13,6 @@ async def task2(data):
 
 
 def callback2(task):
-    global event
     event.set()
 
 
