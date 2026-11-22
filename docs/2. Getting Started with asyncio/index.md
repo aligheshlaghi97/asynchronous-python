@@ -17,34 +17,37 @@ Asyncio has two types of functions: high-level and low-level.
 High-level functions are easier to use, like the ones we used earlier to run an async task. 
 Low-level functions, like event loops we talked about, give more control but are trickier. 
 We'll mainly stick to the easier high-level functions to understand asyncio better. 
-But later on, we might explore some trickier low-level ones.
+Later on, we go into the trickier low-level ones too: event-loop handlers, done callbacks, and `asyncio.Future`.
 
 ## Runners:
-we can use runners to run a coroutine (as a reminder, something possible to await) as we saw previously.
-We can run `asyncio.sleep` function this way in `async_sleep_for_one_second` coroutine:
+we can use runners to run a coroutine, as we saw previously.
+A coroutine is the object returned by an `async def` function.
+A task and a future can also be awaited, but they are not coroutines.
+We can start `async_sleep_for_one_second` with `asyncio.run`. Inside it, we await `asyncio.sleep`:
 
 ```python
 # ex_2_1
 {% include_relative ex_2_1.py %}
 ```
 
-We can use `asyncio.run` using context manager to run the above coroutine:
+We can use `asyncio.Runner` as a context manager and call `runner.run` to run the above coroutine:
 ```python
 # ex_2_2
 {% include_relative ex_2_2.py %}
 ```
-Notice that we will be using Python 3.12 and above (for most of the examples) to run our examples through this tutorial.
+Notice that we will be using Python 3.15 to run the examples through every chapter of this tutorial.
 (e.g. Python 3.10 will throw an error for ex_2_2)
 
-* Note: To grasp the concept of a **context manager** and its functionality with the `with` syntax, 
-our goal is to have complete control over our operations. 
-For instance, if we need to perform actions like closing a pointer or managing memory without explicitly calling `close`, 
-a context manager is handy. In the provided example, the `close` method of the runner will be automatically invoked.
+* Note: A **context manager** and the `with` syntax run setup and cleanup around a block of code.
+In the example above, leaving the `with` block calls `runner.close()`, which closes the runner and its event loop.
+We do not have to call `close` ourselves.
 
 ## Awaiting coroutines, creating tasks and using event loop
 As we'll see in the following example 
 [from asyncio document](https://docs.python.org/3/library/asyncio-task.html#awaitables), 
-just by calling a coroutine (without awaiting it), nothing happens:
+just by calling a coroutine (without awaiting it), its body does not run.
+On Python 3.15 that call also reports `RuntimeWarning: coroutine 'nested' was never awaited`.
+Awaiting it runs the body and prints `42`:
 ```python
 # ex_2_3
 {% include_relative ex_2_3.py %}
@@ -59,17 +62,19 @@ Now let's create some tasks and await them. We'll see it works just fine.
 ```
 <br>
 
-By creating tasks and awaiting them, we can run multiple tasks concurrently, as `task1` and `task2` in the following example:
+By creating tasks and awaiting them, we can run multiple tasks concurrently, as `task1` and `task2` in the following example.
+Both tasks are created before either one is awaited. `create_task` schedules them on the event loop right away, so they overlap while `main` waits.
+Awaiting `task1` and then `task2` does not run them one after the other:
 ```python
 # ex_2_5
 {% include_relative ex_2_5.py %}
 ```
 <br>
 
-`asyncio.get_running_loop` will return the running event loop of OS thread.
+`asyncio.get_running_loop` will return the running event loop of the current OS thread.
 
 
-In the following example, we get the event loop, create a task inside that loop and await it to run.
+In the following example, we get that loop with `asyncio.get_running_loop`, create a task inside it and await it to run.
 The result is the same as ex_2_4
 ```python
 # ex_2_6
@@ -78,16 +83,17 @@ The result is the same as ex_2_4
 
 
 ## Other important APIs of asyncio
-We can use `asyncio.TaskGroup` (using context manager) to run tasks concurrently, 
-[in example below](https://docs.python.org/3/library/asyncio-task.html#task-groups): 
+We can use `asyncio.TaskGroup` with `async with` to run tasks concurrently,
+[in example below](https://docs.python.org/3/library/asyncio-task.html#task-groups).
+`main` waits there until both tasks finish, then prints their results: 
 ```python
 # ex_2_7
 {% include_relative ex_2_7.py %}
 ```
 <br>
 
-We can use `asyncio.wait_for` function to run a coroutine and wait until a timeout.
-In this example, the coroutine takes 2 seconds to run completely, but a timeout error will be raised after 1st second.
+We can use `asyncio.wait_for` to wait until a coroutine finishes or a timeout hits, whichever comes first.
+In this example the coroutine takes 2 seconds, so after 1 second it is cancelled and `TimeoutError` is raised. `Finished sleeping for 2 seconds!` never prints.
 ```python
 # ex_2_8
 {% include_relative ex_2_8.py %}

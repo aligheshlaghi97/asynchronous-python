@@ -7,6 +7,7 @@ permalink: /chapter1/
 # Introduction to Asynchronous Programming
 ## What is asynchronous programming?
 Starting with a broad question, aren't we? Well, when it comes to asynchronous programming, the goal is to execute multiple tasks within our code simultaneously. 
+Those tasks overlap in time. Parallelism, where tasks run at the same instant, is a separate idea covered below.
 Think of it like being on a moving train, chatting with friends, and listening to music all at once. This scenario perfectly illustrates the essence of asynchronous action.
 <br><br>
 [Ben Lutkevich says](https://www.techtarget.com/searchnetworking/definition/asynchronous):<br>
@@ -19,14 +20,16 @@ Threads are the smallest units capable of independent processing, sharing memory
 
 ### Concurrency vs Parallelism
 Concurrency involves executing various tasks by alternating between them rapidly through time slicing, whereas parallelism entails executing different tasks simultaneously. <br>
+Time slicing is how the operating system switches threads. Asyncio stays on one thread and switches tasks when one of them hits `await`.
 [The image says it all](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*6BoKUYL2j9SHZV8uY4T_gg.png) <br>
 ![Screenshot from 2024-05-04 20-43-33](https://github.com/aligheshlaghi97/asynchronous-python/assets/121802083/ee6d54da-d706-446d-b692-5429f02fa47e)
 
 
 ### GIL
 A [GIL](https://en.wikipedia.org/wiki/Global_interpreter_lock) 
-(global interpreter lock) is a mechanism used in computer-language interpreters to synchronize the execution of threads so that only one native thread can execute basic operations at a time. 
-However use of a global interpreter lock in a language effectively limits the amount of parallelism reachable through concurrency of a single interpreter process with multiple threads.
+(global interpreter lock) is a mechanism used in computer-language interpreters to synchronize the execution of threads so that only one native thread can execute bytecode at a time. 
+Use of a GIL in an interpreter limits the parallelism threads can reach inside a single process.
+In CPython, a thread can release the GIL while it waits on I/O, so another thread can run.
 
 ## Event loops and coroutines
 ### Event loops
@@ -43,4 +46,6 @@ Here ```func``` is a coroutine function:
 async def func():
     pass
 ```
-Then we can run this by awaiting it ```await func()```, or run it from top level by ```asyncio.run(func())```.
+Calling ```func()``` creates a coroutine and does not run its body.
+```await func()``` runs it, but ```await``` only works inside another coroutine.
+From top level, run it with ```asyncio.run(func())```.
