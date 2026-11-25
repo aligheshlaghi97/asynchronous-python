@@ -6,12 +6,13 @@ async def nested():
 
 
 async def main():
-    # Nothing happens if we just call "nested()".
-    # A coroutine object is created but not awaited,
-    # so it *won't run at all*.
-    # nested()
+    # Calling nested() only creates a coroutine object.
+    # The body does not run, and on Python 3.15 this warns
+    # because the coroutine is never awaited:
+    # RuntimeWarning: coroutine 'nested' was never awaited
+    nested()
 
-    # Let's do it differently now and await it:
+    # Await it and the body actually runs:
     print(await nested())  # will print "42".
 
 asyncio.run(main())

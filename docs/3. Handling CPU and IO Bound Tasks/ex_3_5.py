@@ -1,6 +1,6 @@
 import time
-from multiprocessing import Pool
 from functools import partial
+from multiprocessing import Pool
 
 
 def cpu_bound_task(a: int, n: int) -> int | float:
@@ -19,7 +19,7 @@ def without_multiprocessing(step: int, value: int) -> tuple[int, int, float]:
     return value1, value2, time_taken
 
 
-def with_multiprocessing(step: int, value: int) -> tuple((int, int, float)):
+def with_multiprocessing(step: int, value: int) -> tuple[int, int, float]:
     cpu_bound_partial = partial(cpu_bound_task, step)
 
     with Pool(2) as p:
@@ -31,14 +31,16 @@ def with_multiprocessing(step: int, value: int) -> tuple((int, int, float)):
 
 
 def main() -> None:
-    value1, value2, time_taken_without_mp = without_multiprocessing(step=2, value=100000000)
-    print(f'Without multiprocessing, value1: {value1}, value2: {value2}')
-    print(f'time taken: {time_taken_without_mp} s')
-    print('======================================')
+    value1, value2, time_taken_without_mp = without_multiprocessing(
+        step=2, value=100000000
+    )
+    print(f"Without multiprocessing, value1: {value1}, value2: {value2}")
+    print(f"time taken: {time_taken_without_mp} s")
+    print("======================================")
     value1, value2, time_taken_with_mp = with_multiprocessing(step=2, value=100000000)
-    print(f'With multiprocessing, value1: {value1}, value2: {value2}')
-    print(f'time taken: {time_taken_with_mp} s')
+    print(f"With multiprocessing, value1: {value1}, value2: {value2}")
+    print(f"time taken: {time_taken_with_mp} s")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

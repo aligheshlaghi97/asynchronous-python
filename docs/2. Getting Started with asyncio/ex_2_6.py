@@ -8,7 +8,7 @@ async def sleep_coro(delay):
 
 
 async def main():
-    loop = asyncio.get_event_loop()
+    loop = asyncio.get_running_loop()
     task1 = loop.create_task(sleep_coro(1))
     await task1
 

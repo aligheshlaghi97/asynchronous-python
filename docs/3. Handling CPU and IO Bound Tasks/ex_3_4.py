@@ -10,7 +10,7 @@ def fetch_data(url):
 
 
 def main():
-    url = 'https://www.example.org/'
+    url = 'https://www.example.com/'
     t = time.time()
     response1, response2, response3 = fetch_data(url)
     print(f'It took {time.time() - t} s')

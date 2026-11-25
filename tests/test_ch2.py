@@ -23,7 +23,7 @@ class TestEx1AsyncSleep(unittest.TestCase):
             asyncio.run(async_sleep_ex_1())
 
             # Check if the print statements were called correctly
-            mock_print.assert_any_call('stared sleeping for 1 second!')
+            mock_print.assert_any_call('started sleeping for 1 second!')
             mock_print.assert_any_call('Finished sleeping!')
 
             # Ensure that asyncio.sleep was called once
@@ -38,7 +38,7 @@ class TestEx2AsyncSleep(unittest.TestCase):
                 runner.run(async_sleep_ex_2())
 
                 # Check if the print statements were called correctly
-                mock_print.assert_any_call('stared sleeping for 1 second!')
+                mock_print.assert_any_call('started sleeping for 1 second!')
                 mock_print.assert_any_call('Finished sleeping!')
 
                 # Ensure that asyncio.sleep was called once

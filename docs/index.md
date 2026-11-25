@@ -13,6 +13,7 @@ covering core concepts, practical tools, and advanced techniques.
 From the fundamentals of asyncio to alternative libraries like AnyIO and Trio,
 as well as task scheduling solutions such as Celery and APScheduler,
 this repository provides a one-stop resource for exploring the async Python ecosystem.
+Examples throughout these chapters are run with Python 3.15.
 
 Whether you're a beginner eager to dive into async programming
 or an experienced developer looking to refine your skills and explore emerging patterns,
@@ -42,7 +43,7 @@ this repository has you covered.
 3. * **Handling CPU and I/O Bound Tasks**
      - CPU-bound vs I/O-bound
      - Performing asynchronous I/O operations with asyncio and httpx
-     - Performing asynchronous CPU operations
+     - Performing CPU operations with multiprocessing
      - Strategies for balancing CPU and I/O-bound workloads in async Python applications
      - Process Creation in Python: Fork vs. Spawn
 
