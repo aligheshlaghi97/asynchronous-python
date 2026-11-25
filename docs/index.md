@@ -43,7 +43,7 @@ this repository has you covered.
 3. * **Handling CPU and I/O Bound Tasks**
      - CPU-bound vs I/O-bound
      - Performing asynchronous I/O operations with asyncio and httpx
-     - Performing asynchronous CPU operations
+     - Performing CPU operations with multiprocessing
      - Strategies for balancing CPU and I/O-bound workloads in async Python applications
      - Process Creation in Python: Fork vs. Spawn
 
